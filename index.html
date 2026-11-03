@@ -741,6 +741,256 @@ const QUESTIONS = [
  es:{q:"¿Qué dato demuestra más directamente que existe un corte de zona para `child.example.com`?",o:["Un registro A para `www.child.example.com`","Una delegación NS de `child.example.com` publicada en la zona padre","Un TTL bajo en el SOA padre","Un registro TXT llamado `child`"],e:"La delegación NS en la zona padre indica que la autoridad de la zona hija se encuentra en los servidores nombrados. Un A aislado no crea una zona hija."},
  en:{q:"Which data most directly demonstrates that a zone cut exists for `child.example.com`?",o:["An A record for `www.child.example.com`","An NS delegation for `child.example.com` published in the parent zone","A low TTL in the parent SOA","A TXT record named `child`"],e:"The NS delegation in the parent indicates that the child zone's authority is at the named servers. An isolated A record does not create a child zone."}
 }
+ {
+  id:"F013",cat:"DNS Fundamentals",level:"Basic",answer:2,
+  es:{q:"¿Qué identifica principalmente un nombre de dominio dentro de DNS?",o:["Una dirección MAC","Un puerto de red","Un nombre legible asociado a recursos de Internet","Un tipo de conexión TCP"],e:"Un nombre de dominio es un nombre jerárquico y legible que DNS utiliza para localizar información asociada a ese nombre, como direcciones IP."},
+  en:{q:"What does a domain name primarily identify in DNS?",o:["A MAC address","A network port","A human-readable name associated with Internet resources","A type of TCP connection"],e:"A domain name is a human-readable hierarchical name that DNS uses to locate information associated with that name, such as IP addresses."}
+},
+{
+  id:"F014",cat:"DNS Fundamentals",level:"Basic",answer:1,
+  es:{q:"¿Qué significa la sigla DNS?",o:["Domain Network Service","Domain Name System","Dynamic Name Server","Data Naming Standard"],e:"DNS significa Domain Name System: el sistema distribuido que permite consultar información asociada a nombres de dominio."},
+  en:{q:"What does DNS stand for?",o:["Domain Network Service","Domain Name System","Dynamic Name Server","Data Naming Standard"],e:"DNS stands for Domain Name System, the distributed system used to look up information associated with domain names."}
+},
+{
+  id:"F015",cat:"DNS Fundamentals",level:"Basic",answer:0,
+  es:{q:"¿Cuál es una característica fundamental de DNS?",o:["Es un sistema distribuido y jerárquico","Es una única base de datos central","Funciona solamente dentro de una computadora","Reemplaza el protocolo IP"],e:"DNS está distribuido entre muchos servidores y organizado jerárquicamente. Ningún servidor contiene por sí solo toda la información de DNS."},
+  en:{q:"What is a fundamental characteristic of DNS?",o:["It is a distributed and hierarchical system","It is a single central database","It operates only on one computer","It replaces the IP protocol"],e:"DNS is distributed across many servers and organized hierarchically. No single server contains all DNS information."}
+},
+{
+  id:"F016",cat:"DNS Fundamentals",level:"Basic",answer:3,
+  es:{q:"Un usuario escribe www.example.com en su navegador. ¿Qué función puede realizar DNS?",o:["Cifrar automáticamente toda la página","Crear una conexión Wi-Fi","Asignar una contraseña al usuario","Encontrar la dirección IP asociada al nombre"],e:"DNS puede resolver el nombre a una dirección IP. Después, otros protocolos se encargan de establecer la comunicación con el servidor."},
+  en:{q:"A user enters www.example.com in a browser. What can DNS do?",o:["Automatically encrypt the entire website","Create a Wi-Fi connection","Assign a password to the user","Find the IP address associated with the name"],e:"DNS can resolve the name to an IP address. Other protocols then handle communication with the server."}
+},
+{
+  id:"F017",cat:"DNS Fundamentals",level:"Intermediate",answer:1,
+  es:{q:"¿Por qué DNS se considera un sistema jerárquico?",o:["Porque todos los servidores tienen la misma autoridad","Porque los nombres se organizan desde la raíz hacia niveles inferiores","Porque cada dominio debe tener exactamente dos servidores","Porque las direcciones IP se ordenan alfabéticamente"],e:"La jerarquía comienza en la raíz y continúa por los TLD, los dominios y los subdominios. Cada nivel puede delegar autoridad a niveles inferiores."},
+  en:{q:"Why is DNS considered a hierarchical system?",o:["Because all servers have the same authority","Because names are organized from the root toward lower levels","Because every domain must have exactly two servers","Because IP addresses are sorted alphabetically"],e:"The hierarchy starts at the root and continues through TLDs, domains, and subdomains. Each level can delegate authority to lower levels."}
+},
+{
+  id:"F018",cat:"DNS Fundamentals",level:"Intermediate",answer:2,
+  es:{q:"¿Qué representa el punto final en el nombre www.example.com.?",o:["Un error de escritura","Una dirección IPv4","La raíz del espacio de nombres DNS","El servidor autoritativo"],e:"El punto final representa la raíz. Por eso, www.example.com. es un nombre de dominio completamente calificado (FQDN) escrito de forma absoluta."},
+  en:{q:"What does the trailing dot in www.example.com. represent?",o:["A typing error","An IPv4 address","The root of the DNS namespace","The authoritative server"],e:"The trailing dot represents the root. Therefore, www.example.com. is an absolute, fully qualified domain name."}
+},
+{
+  id:"F019",cat:"DNS Fundamentals",level:"Intermediate",answer:0,
+  es:{q:"¿Qué es un FQDN?",o:["Un nombre de dominio completo que identifica una posición en la jerarquía DNS","Una dirección IPv6","Un archivo de configuración de un router","Un nombre que contiene obligatoriamente www"],e:"FQDN significa Fully Qualified Domain Name. Representa el nombre completo dentro de la jerarquía DNS, incluyendo su relación con la raíz."},
+  en:{q:"What is an FQDN?",o:["A complete domain name identifying a position in the DNS hierarchy","An IPv6 address","A router configuration file","A name that must contain www"],e:"FQDN means Fully Qualified Domain Name. It represents the complete name within the DNS hierarchy, including its relationship to the root."}
+},
+{
+  id:"F020",cat:"DNS Fundamentals",level:"Intermediate",answer:3,
+  es:{q:"¿Cuál de estas afirmaciones sobre DNS es correcta?",o:["DNS solo almacena direcciones IPv4","DNS siempre necesita TCP","DNS solo funciona para sitios web","DNS puede almacenar distintos tipos de registros, no solamente direcciones IP"],e:"DNS almacena distintos tipos de información mediante registros como A, AAAA, MX, NS, TXT, SOA y otros."},
+  en:{q:"Which statement about DNS is correct?",o:["DNS only stores IPv4 addresses","DNS always requires TCP","DNS only works for websites","DNS can store different record types, not just IP addresses"],e:"DNS stores different kinds of information through records such as A, AAAA, MX, NS, TXT, SOA, and others."}
+},
+{
+  id:"F021",cat:"DNS Fundamentals",level:"Intermediate",answer:1,
+  es:{q:"¿Qué sucede cuando una respuesta DNS se encuentra en la caché de un resolver y todavía es válida?",o:["El resolver debe consultar siempre a los servidores raíz","El resolver puede responder usando la información almacenada","El dominio se elimina del registro","El servidor autoritativo deja de existir"],e:"Una respuesta válida en caché puede utilizarse sin repetir toda la resolución. Esto reduce consultas y acelera las respuestas."},
+  en:{q:"What happens when a DNS answer is found in a resolver's cache and is still valid?",o:["The resolver must always query root servers","The resolver can answer using the stored information","The domain is removed from the registry","The authoritative server ceases to exist"],e:"A valid cached answer can be reused without repeating the entire resolution process. This reduces queries and improves response time."}
+},
+{
+  id:"F022",cat:"DNS Fundamentals",level:"Intermediate",answer:2,
+  es:{q:"¿Qué indica normalmente un TTL de 3600 en un registro DNS?",o:["Que el dominio caduca en 3600 días","Que el servidor debe reiniciarse cada hora","Que la información puede permanecer en caché hasta 3600 segundos","Que la zona contiene 3600 registros"],e:"TTL significa Time To Live. En este contexto, 3600 segundos equivalen a una hora y determinan cuánto tiempo puede almacenarse una respuesta en caché."},
+  en:{q:"What does a TTL of 3600 on a DNS record normally indicate?",o:["The domain expires in 3600 days","The server must restart every hour","The information can remain cached for up to 3600 seconds","The zone contains 3600 records"],e:"TTL means Time To Live. Here, 3600 seconds equals one hour and determines how long a DNS answer may be cached."}
+},
+{
+  id:"F023",cat:"DNS Fundamentals",level:"Advanced",answer:0,
+  es:{q:"Un sitio cambia la dirección IP de su registro A. ¿Por qué algunos usuarios todavía pueden llegar a la dirección anterior?",o:["Porque algunos resolvers conservan la respuesta anterior en caché","Porque los registros A no pueden modificarse","Porque DNS convierte automáticamente IPv4 en IPv6","Porque el TLD bloquea todos los cambios"],e:"Los resolvers pueden conservar la respuesta anterior hasta que expire su TTL. Por eso, un cambio no siempre se refleja inmediatamente en todas las cachés."},
+  en:{q:"A website changes the IP address in its A record. Why might some users still reach the old address?",o:["Because some resolvers retain the previous answer in cache","Because A records cannot be modified","Because DNS automatically converts IPv4 into IPv6","Because the TLD blocks all changes"],e:"Resolvers may retain the previous answer until its TTL expires. Therefore, a change may not appear immediately in every cache."}
+},
+{
+  id:"F024",cat:"DNS Fundamentals",level:"Advanced",answer:3,
+  es:{q:"¿Qué diferencia existe entre resolver un nombre y establecer una conexión con un servidor web?",o:["Son exactamente el mismo proceso","DNS establece la conexión TCP y HTTP resuelve el nombre","Resolver un nombre siempre requiere autenticación","DNS encuentra información; otros protocolos establecen la comunicación"],e:"DNS permite descubrir información, como una dirección IP. La conexión posterior puede utilizar TCP o QUIC y protocolos de aplicación como HTTP."},
+  en:{q:"What is the difference between resolving a name and establishing a connection to a web server?",o:["They are exactly the same process","DNS establishes TCP and HTTP resolves the name","Name resolution always requires authentication","DNS finds information; other protocols establish communication"],e:"DNS helps discover information such as an IP address. The subsequent connection may use TCP or QUIC and application protocols such as HTTP."}
+},
+{
+  id:"F025",cat:"DNS Fundamentals",level:"Advanced",answer:1,
+  es:{q:"¿Qué describe mejor una respuesta DNS autoritativa?",o:["Una respuesta inventada por el navegador","Una respuesta proporcionada por un servidor con autoridad sobre la zona consultada","Una respuesta enviada siempre por un servidor raíz","Una respuesta que nunca puede almacenarse en caché"],e:"Una respuesta autoritativa proviene de un servidor que tiene autoridad sobre la zona correspondiente al nombre consultado."},
+  en:{q:"What best describes an authoritative DNS answer?",o:["An answer invented by the browser","An answer provided by a server authoritative for the queried zone","An answer always sent by a root server","An answer that can never be cached"],e:"An authoritative answer comes from a server that has authority over the zone corresponding to the queried name."}
+},
+{
+  id:"F026",cat:"Domains and Hierarchy",level:"Basic",answer:2,
+  es:{q:"En el nombre tienda.example.com, ¿qué representa .com?",o:["Un subdominio","El nombre del host","El TLD","El registro A"],e:"El TLD (Top-Level Domain) es el nivel inmediatamente inferior a la raíz. En este ejemplo es .com."},
+  en:{q:"In the name store.example.com, what does .com represent?",o:["A subdomain","The host name","The TLD","The A record"],e:"The TLD (Top-Level Domain) is the level immediately below the root. In this example, it is .com."}
+},
+{
+  id:"F027",cat:"Domains and Hierarchy",level:"Basic",answer:0,
+  es:{q:"En api.shop.example.com, ¿cuál es el dominio inmediatamente a la izquierda de .com?",o:["example","shop","api","com"],e:"example.com es el dominio registrado en este ejemplo. Los nombres api y shop aparecen como niveles más específicos a su izquierda."},
+  en:{q:"In api.shop.example.com, which domain label is immediately to the left of .com?",o:["example","shop","api","com"],e:"example.com is the registered domain in this example. The labels api and shop appear as more specific levels to its left."}
+},
+{
+  id:"F028",cat:"Domains and Hierarchy",level:"Intermediate",answer:3,
+  es:{q:"¿Cómo se llama cada segmento separado por puntos en un nombre DNS?",o:["Un paquete","Un puerto","Una zona obligatoriamente","Una etiqueta o label"],e:"Cada segmento entre puntos se denomina label. Por ejemplo, api.shop.example.com contiene cuatro labels antes de la raíz."},
+  en:{q:"What is each segment separated by dots in a DNS name called?",o:["A packet","A port","A mandatory zone","A label"],e:"Each segment between dots is called a label. For example, api.shop.example.com contains four labels before the root."}
+},
+{
+  id:"F029",cat:"Domains and Hierarchy",level:"Intermediate",answer:1,
+  es:{q:"En api.shop.example.com, ¿qué nombre es el subdominio más específico?",o:["com","api.shop.example.com","example.com","shop.example.com"],e:"api.shop.example.com es el nombre más específico de los presentados. Está por debajo de shop.example.com en la jerarquía."},
+  en:{q:"In api.shop.example.com, which name is the most specific subdomain?",o:["com","api.shop.example.com","example.com","shop.example.com"],e:"api.shop.example.com is the most specific name among the options. It is below shop.example.com in the hierarchy."}
+},
+{
+  id:"F030",cat:"Domains and Hierarchy",level:"Intermediate",answer:2,
+  es:{q:"¿Cuál es la relación jerárquica entre shop.example.com y example.com?",o:["Son TLD diferentes","shop.example.com es el padre","shop.example.com es un nombre subordinado a example.com","example.com es un subdominio de shop.example.com"],e:"shop.example.com está debajo de example.com. Por eso, example.com es su dominio padre y shop.example.com es un subdominio."},
+  en:{q:"What is the hierarchical relationship between shop.example.com and example.com?",o:["They are different TLDs","shop.example.com is the parent","shop.example.com is subordinate to example.com","example.com is a subdomain of shop.example.com"],e:"shop.example.com is below example.com. Therefore, example.com is its parent domain and shop.example.com is a subdomain."}
+},
+{
+  id:"F031",cat:"Domains and Hierarchy",level:"Advanced",answer:0,
+  es:{q:"¿Qué afirmación describe correctamente la relación entre un subdominio y una zona DNS?",o:["Un subdominio no necesita tener obligatoriamente una zona independiente","Todo subdominio debe tener servidores propios","Todo subdominio requiere comprar otro dominio","Un subdominio siempre pertenece a otro TLD"],e:"Un subdominio puede estar administrado dentro de la misma zona que su dominio padre. Solo tendrá una zona independiente si se configura una delegación."},
+  en:{q:"Which statement correctly describes the relationship between a subdomain and a DNS zone?",o:["A subdomain does not necessarily need its own independent zone","Every subdomain must have its own servers","Every subdomain requires purchasing another domain","A subdomain always belongs to another TLD"],e:"A subdomain can be managed within the same zone as its parent domain. It has an independent zone only when a delegation is configured."}
+},
+{
+  id:"F032",cat:"Domains and Hierarchy",level:"Advanced",answer:3,
+  es:{q:"Una empresa tiene example.com y quiere crear mail.example.com. ¿Qué necesita para crear ese nombre?",o:["Comprar un segundo TLD","Registrar mail.example.com como un dominio independiente","Crear obligatoriamente una zona DNS nueva","Crear el nombre mediante la configuración DNS de example.com"],e:"El administrador de example.com puede crear el subdominio mediante registros DNS. No necesita comprarlo como un dominio independiente."},
+  en:{q:"A company owns example.com and wants to create mail.example.com. What does it need to create that name?",o:["Purchase a second TLD","Register mail.example.com as an independent domain","Create a new DNS zone in every case","Create the name through the DNS configuration of example.com"],e:"The administrator of example.com can create the subdomain using DNS records. It does not need to be purchased as an independent domain."}
+},
+{
+  id:"F033",cat:"Domains and Hierarchy",level:"Intermediate",answer:1,
+  es:{q:"¿Cuál de estos nombres tiene más niveles de etiquetas antes de la raíz?",o:["example.com","api.dev.example.com","www.example.com","com"],e:"api.dev.example.com contiene cuatro etiquetas antes de la raíz: api, dev, example y com. Los otros nombres tienen menos."},
+  en:{q:"Which of these names has the most label levels before the root?",o:["example.com","api.dev.example.com","www.example.com","com"],e:"api.dev.example.com contains four labels before the root: api, dev, example, and com. The other names have fewer."}
+},
+{
+  id:"F034",cat:"Domains and Hierarchy",level:"Advanced",answer:2,
+  es:{q:"¿Qué significa que los nombres DNS se comparan sin distinguir normalmente entre mayúsculas y minúsculas?",o:["Que los nombres no pueden contener letras","Que las mayúsculas cambian la zona","Que Example.com y example.com representan el mismo nombre DNS","Que DNS convierte todos los nombres en direcciones IP"],e:"DNS no distingue normalmente entre mayúsculas y minúsculas en los nombres. Example.com y example.com se consideran el mismo nombre."},
+  en:{q:"What does it mean that DNS names are normally compared case-insensitively?",o:["Names cannot contain letters","Uppercase letters change the zone","Example.com and example.com represent the same DNS name","DNS converts all names into IP addresses"],e:"DNS is normally case-insensitive for domain names. Example.com and example.com are treated as the same name."}
+},
+{
+  id:"F035",cat:"Domains and Hierarchy",level:"Advanced",answer:0,
+  es:{q:"¿Cuál es el límite máximo de longitud de una etiqueta DNS estándar?",o:["63 octetos","255 octetos","128 caracteres Unicode en todos los casos","1024 octetos"],e:"Una etiqueta DNS tiene un máximo de 63 octetos. El límite de longitud total de un nombre DNS codificado es distinto."},
+  en:{q:"What is the maximum length of a standard DNS label?",o:["63 octets","255 octets","128 Unicode characters in every case","1024 octets"],e:"A DNS label has a maximum length of 63 octets. The maximum total length of an encoded DNS name is a separate limit."}
+},
+{
+  id:"F036",cat:"Domains and Hierarchy",level:"Advanced",answer:3,
+  es:{q:"¿Qué límite se aplica normalmente a la longitud total de un nombre DNS en su representación wire?",o:["63 octetos incluyendo todos los puntos","512 octetos","1024 octetos","255 octetos"],e:"La representación wire de un nombre DNS tiene un límite de 255 octetos, contando las etiquetas y sus indicadores de longitud, incluida la raíz."},
+  en:{q:"What limit normally applies to the total length of a DNS name in its wire representation?",o:["63 octets including all dots","512 octets","1024 octets","255 octets"],e:"The wire representation of a DNS name is limited to 255 octets, counting labels and their length indicators, including the root."}
+},
+{
+  id:"F037",cat:"Domain Registration",level:"Basic",answer:1,
+  es:{q:"¿Qué función cumple un registrador de dominios (registrar)?",o:["Opera todos los servidores raíz","Ofrece servicios para registrar y administrar nombres de dominio","Resuelve todas las consultas DNS del mundo","Es el propietario de todos los TLD"],e:"Un registrador es una entidad que permite registrar nombres de dominio y gestionar operaciones relacionadas con ellos mediante el registro correspondiente."},
+  en:{q:"What does a domain registrar do?",o:["Operates all root servers","Provides services to register and manage domain names","Resolves every DNS query in the world","Owns all TLDs"],e:"A registrar is an entity that allows customers to register domain names and manage related operations through the relevant registry."}
+},
+{
+  id:"F038",cat:"Domain Registration",level:"Basic",answer:2,
+  es:{q:"¿Qué es un registry en el contexto del registro de dominios?",o:["El navegador del usuario","Un resolver recursivo","La entidad que mantiene la base de datos de un TLD","Un archivo local de caché"],e:"El registry mantiene los datos centrales del TLD y administra su funcionamiento. Los registradores interactúan con él para registrar dominios."},
+  en:{q:"What is a registry in domain registration?",o:["The user's browser","A recursive resolver","The organization that maintains a TLD database","A local cache file"],e:"The registry maintains the central data for a TLD and administers its operation. Registrars interact with it to register domains."}
+},
+{
+  id:"F039",cat:"Domain Registration",level:"Intermediate",answer:0,
+  es:{q:"¿Cuál describe mejor la relación entre registrador y registry?",o:["El registrador ofrece el registro al cliente y se comunica con el registry","El registry es el navegador y el registrador es el servidor raíz","Son dos nombres para el mismo servidor DNS","El registrador siempre opera el TLD"],e:"El registrador actúa como intermediario de registro para el cliente y se comunica con el registry que administra el TLD."},
+  en:{q:"Which best describes the relationship between a registrar and a registry?",o:["The registrar offers registration to the customer and communicates with the registry","The registry is the browser and the registrar is the root server","They are two names for the same DNS server","The registrar always operates the TLD"],e:"The registrar acts as the customer's registration provider and communicates with the registry that administers the TLD."}
+},
+{
+  id:"F040",cat:"Domain Registration",level:"Intermediate",answer:3,
+  es:{q:"Una persona compra example.com a través de un registrador. ¿Qué obtiene principalmente?",o:["La propiedad de todos los servidores DNS","Una dirección IP dedicada garantizada","Una zona DNS alojada obligatoriamente por el registrador","El derecho de registrar y usar ese nombre durante el período contratado"],e:"El registro concede derechos de uso del nombre durante un período, sujeto a las reglas del TLD y a la renovación. El alojamiento DNS puede contratarse por separado."},
+  en:{q:"A person buys example.com through a registrar. What do they primarily obtain?",o:["Ownership of all DNS servers","A guaranteed dedicated IP address","A DNS zone necessarily hosted by the registrar","The right to register and use that name for the contracted period"],e:"Registration grants the right to use the name for a period, subject to TLD rules and renewal. DNS hosting can be provided separately."}
+},
+{
+  id:"F041",cat:"Domain Registration",level:"Intermediate",answer:1,
+  es:{q:"¿Qué sucede normalmente si no se renueva un dominio antes de su vencimiento?",o:["El dominio se convierte automáticamente en un TLD","Puede entrar en períodos de gracia, redención o eliminación según las reglas aplicables","Se transforma en una dirección IPv6","Todos sus registros DNS se convierten en registros MX"],e:"El proceso exacto depende del TLD y del registrador. Puede incluir períodos de gracia y redención antes de que el nombre vuelva a estar disponible."},
+  en:{q:"What normally happens if a domain is not renewed before expiration?",o:["The domain automatically becomes a TLD","It may enter grace, redemption, or deletion periods under applicable rules","It becomes an IPv6 address","All its DNS records become MX records"],e:"The exact process depends on the TLD and registrar. It may include grace and redemption periods before the name becomes available again."}
+},
+{
+  id:"F042",cat:"Domain Registration",level:"Advanced",answer:2,
+  es:{q:"¿Qué diferencia existe entre registrar un dominio y contratar alojamiento DNS?",o:["No existe ninguna diferencia","Registrar un dominio crea automáticamente un servidor web","El registro otorga el uso del nombre; el alojamiento DNS proporciona infraestructura para administrar sus registros","El alojamiento DNS permite comprar TLD"],e:"Son servicios diferentes. Puedes registrar un dominio con una empresa y alojar su zona DNS en otro proveedor, siempre que configures correctamente la delegación."},
+  en:{q:"What is the difference between registering a domain and purchasing DNS hosting?",o:["There is no difference","Registering a domain automatically creates a web server","Registration grants use of the name; DNS hosting provides infrastructure to manage its records","DNS hosting allows you to purchase TLDs"],e:"They are different services. You can register a domain with one company and host its DNS zone with another, provided delegation is configured correctly."}
+},
+{
+  id:"F043",cat:"Domain Registration",level:"Advanced",answer:0,
+  es:{q:"¿Qué función puede cumplir la información de nameservers configurada en el registrador?",o:["Indicar qué servidores son responsables de la zona del dominio mediante la delegación publicada en el padre","Definir la contraseña del sitio web","Crear automáticamente todos los registros A","Determinar el TTL de todos los resolvers"],e:"La configuración de nameservers en el registrador permite publicar o actualizar la delegación del dominio en el nivel superior correspondiente."},
+  en:{q:"What role can nameserver information configured at the registrar perform?",o:["Identify the servers responsible for the domain's zone through delegation published in the parent","Define the website password","Automatically create all A records","Determine the TTL of every resolver"],e:"Nameserver configuration at the registrar allows the domain's delegation to be published or updated at the relevant parent level."}
+},
+{
+  id:"F044",cat:"Domain Registration",level:"Advanced",answer:3,
+  es:{q:"Una empresa cambia de proveedor de DNS, pero conserva el mismo registrador. ¿Es posible?",o:["No, ambos proveedores deben ser la misma empresa","Solo si compra otro dominio","Solo si cambia de TLD","Sí, puede cambiar los nameservers delegados sin transferir el registro del dominio"],e:"El registrador y el proveedor de alojamiento DNS pueden ser distintos. Cambiar los nameservers no equivale a transferir el dominio a otro registrador."},
+  en:{q:"A company changes DNS providers but keeps the same registrar. Is this possible?",o:["No, both providers must be the same company","Only if it buys another domain","Only if it changes TLD","Yes, it can change delegated nameservers without transferring the domain registration"],e:"The registrar and DNS hosting provider can be different. Changing nameservers is not the same as transferring a domain to another registrar."}
+},
+{
+  id:"F045",cat:"Domain Registration",level:"Intermediate",answer:1,
+  es:{q:"¿Qué describe mejor una transferencia de dominio entre registradores?",o:["Mover todos los registros A a otro archivo","Cambiar el registrador que administra el registro del dominio","Convertir un dominio en subdominio","Cambiar el protocolo de UDP a TCP"],e:"Una transferencia de registrador cambia la entidad que administra el registro del dominio. No implica necesariamente cambiar el proveedor DNS."},
+  en:{q:"What best describes a domain transfer between registrars?",o:["Moving all A records to another file","Changing the registrar that manages the domain registration","Converting a domain into a subdomain","Changing the protocol from UDP to TCP"],e:"A registrar transfer changes the entity managing the domain registration. It does not necessarily change the DNS provider."}
+},
+{
+  id:"F046",cat:"DNS Zones",level:"Basic",answer:2,
+  es:{q:"¿Qué es una zona DNS?",o:["Una región geográfica donde funciona Internet","Una lista de direcciones IP de usuarios","Una porción del espacio de nombres DNS administrada como una unidad","Un tipo de registro que apunta a IPv6"],e:"Una zona es una parte del espacio de nombres DNS cuya información se administra como una unidad. Puede coincidir con un dominio o cubrir solo una parte de él."},
+  en:{q:"What is a DNS zone?",o:["A geographic region where the Internet operates","A list of users' IP addresses","A portion of the DNS namespace managed as a unit","A record type that points to IPv6"],e:"A zone is a portion of the DNS namespace whose information is managed as a unit. It may match a domain or cover only part of it."}
+},
+{
+  id:"F047",cat:"DNS Zones",level:"Intermediate",answer:0,
+  es:{q:"¿Cuál es la diferencia principal entre un dominio y una zona?",o:["El dominio es una rama de nombres; la zona es la parte administrada mediante datos DNS autoritativos","Son exactamente lo mismo en todos los casos","La zona siempre es más grande que el dominio","El dominio contiene registros y la zona solo direcciones IP"],e:"Un dominio describe una posición y una rama en la jerarquía de nombres. Una zona define qué parte de esa jerarquía se administra en un conjunto de datos DNS autoritativos."},
+  en:{q:"What is the main difference between a domain and a zone?",o:["A domain is a branch of names; a zone is the part managed through authoritative DNS data","They are exactly the same in every case","A zone is always larger than a domain","A domain contains records while a zone contains only IP addresses"],e:"A domain describes a position and branch in the naming hierarchy. A zone defines which part of that hierarchy is managed in a set of authoritative DNS data."}
+},
+{
+  id:"F048",cat:"DNS Zones",level:"Intermediate",answer:3,
+  es:{q:"Si example.com no tiene subzonas delegadas, ¿qué puede contener su zona?",o:["Solo el registro A del dominio raíz","Únicamente registros NS","Solamente nombres de servidores","Registros de example.com y de sus subdominios no delegados"],e:"Una zona puede contener registros para el dominio y para nombres subordinados que no se hayan delegado a otra zona."},
+  en:{q:"If example.com has no delegated child zones, what can its zone contain?",o:["Only the A record of the apex","Only NS records","Only nameserver names","Records for example.com and its non-delegated subdomains"],e:"A zone can contain records for the domain and for subordinate names that have not been delegated to another zone."}
+},
+{
+  id:"F049",cat:"DNS Zones",level:"Advanced",answer:1,
+  es:{q:"Una zona example.com contiene un registro para api.example.com. ¿Qué significa esto?",o:["api.example.com es necesariamente otra zona","El nombre api.example.com puede estar administrado dentro de la zona example.com","El nombre api.example.com debe estar registrado en otro registrador","example.com dejó de ser un dominio"],e:"La presencia de un registro para un subdominio no crea automáticamente una zona independiente. El nombre puede seguir bajo la administración de la zona padre."},
+  en:{q:"A zone for example.com contains a record for api.example.com. What does this mean?",o:["api.example.com is necessarily another zone","The name api.example.com can be managed within the example.com zone","api.example.com must be registered with another registrar","example.com is no longer a domain"],e:"The presence of a record for a subdomain does not automatically create an independent zone. The name can remain managed by the parent zone."}
+},
+{
+  id:"F050",cat:"DNS Zones",level:"Advanced",answer:2,
+  es:{q:"¿Qué ocurre cuando dev.example.com se delega como una zona hija independiente?",o:["Se elimina example.com","Se convierte en un TLD","La zona padre deja de administrar los datos internos de la zona hija y publica la delegación","Se copian obligatoriamente todos los registros de example.com"],e:"La zona padre publica información de delegación para dev.example.com. La administración autoritativa de los datos internos pasa a los servidores de la zona hija."},
+  en:{q:"What happens when dev.example.com is delegated as an independent child zone?",o:["example.com is deleted","It becomes a TLD","The parent zone stops managing the child zone's internal data and publishes the delegation","All records from example.com must be copied"],e:"The parent zone publishes delegation information for dev.example.com. Authoritative management of the child zone's internal data belongs to the child zone's servers."}
+},
+{
+  id:"F051",cat:"DNS Zones",level:"Intermediate",answer:0,
+  es:{q:"¿Qué suele contener un archivo de zona DNS?",o:["Registros que describen nombres y datos asociados a una zona","Contraseñas de todos los usuarios del dominio","El historial completo de navegación","Las direcciones MAC de los clientes"],e:"Un archivo de zona contiene registros DNS, como SOA, NS, A, AAAA, MX y TXT, según las necesidades de la zona."},
+  en:{q:"What does a DNS zone file usually contain?",o:["Records describing names and data associated with a zone","Passwords for every domain user","The complete browsing history","Client MAC addresses"],e:"A zone file contains DNS records such as SOA, NS, A, AAAA, MX, and TXT, depending on the zone's needs."}
+},
+{
+  id:"F052",cat:"DNS Zones",level:"Intermediate",answer:3,
+  es:{q:"¿Qué registro identifica el inicio de autoridad de una zona DNS?",o:["A","MX","CNAME","SOA"],e:"SOA significa Start of Authority. Cada zona DNS tiene un registro SOA que contiene información administrativa y parámetros de sincronización."},
+  en:{q:"Which record identifies the start of authority for a DNS zone?",o:["A","MX","CNAME","SOA"],e:"SOA stands for Start of Authority. Every DNS zone has an SOA record containing administrative information and synchronization parameters."}
+},
+{
+  id:"F053",cat:"DNS Zones",level:"Advanced",answer:1,
+  es:{q:"En un archivo de zona, ¿qué representa normalmente el símbolo @?",o:["La dirección IPv4 del servidor","El origen o nombre raíz de la zona","El servidor raíz de Internet","Un comodín para todos los subdominios"],e:"En la sintaxis habitual de archivos de zona, @ representa el origen actual de la zona, normalmente el nombre indicado en la directiva $ORIGIN."},
+  en:{q:"In a zone file, what does the @ symbol normally represent?",o:["The server's IPv4 address","The zone origin or apex name","The Internet root server","A wildcard for all subdomains"],e:"In common zone file syntax, @ represents the current zone origin, usually the name specified by the $ORIGIN directive."}
+},
+{
+  id:"F054",cat:"DNS Zones",level:"Advanced",answer:2,
+  es:{q:"¿Qué indica normalmente la directiva $ORIGIN en un archivo de zona?",o:["El origen geográfico del servidor","La dirección IP principal de la zona","El nombre que se utiliza como origen para completar nombres relativos","El tiempo de expiración del dominio"],e:"$ORIGIN establece el sufijo de referencia para interpretar nombres relativos en el archivo de zona. No es un registro DNS."},
+  en:{q:"What does the $ORIGIN directive normally indicate in a zone file?",o:["The server's geographic origin","The zone's primary IP address","The name used as the origin for completing relative names","The domain's expiration time"],e:"$ORIGIN sets the reference suffix used to interpret relative names in a zone file. It is not a DNS record."}
+},
+{
+  id:"F055",cat:"DNS Zones",level:"Advanced",answer:0,
+  es:{q:"En un archivo de zona con $ORIGIN example.com., ¿cómo se interpreta normalmente el nombre www si no termina en punto?",o:["Como www.example.com.","Como www.root","Como un nombre inválido siempre","Como una dirección IP"],e:"Los nombres relativos se completan usando el origen. Con $ORIGIN example.com., el nombre www se interpreta como www.example.com."},
+  en:{q:"In a zone file with $ORIGIN example.com., how is the name www normally interpreted if it has no trailing dot?",o:["As www.example.com.","As www.root","As an always-invalid name","As an IP address"],e:"Relative names are completed using the origin. With $ORIGIN example.com., the name www is interpreted as www.example.com."}
+},
+{
+  id:"F056",cat:"DNS Zones",level:"Advanced",answer:3,
+  es:{q:"En un archivo de zona, ¿qué suele indicar un nombre terminado en punto?",o:["Que el registro está desactivado","Que el nombre debe convertirse a IPv4","Que el nombre es relativo al servidor","Que el nombre es absoluto y no debe completarse con $ORIGIN"],e:"El punto final indica que el nombre es absoluto. El software de DNS no debe añadirle el origen de la zona."},
+  en:{q:"In a zone file, what does a name ending with a dot usually indicate?",o:["The record is disabled","The name must be converted to IPv4","The name is relative to the server","The name is absolute and must not be completed with $ORIGIN"],e:"The trailing dot indicates that the name is absolute. DNS software must not append the zone origin to it."}
+},
+{
+  id:"F057",cat:"DNS Zones",level:"Intermediate",answer:1,
+  es:{q:"¿Cuál es el propósito de un registro NS en una zona?",o:["Asignar una dirección IPv4 a un host","Identificar servidores de nombres responsables de la zona","Definir el servidor de correo","Publicar una clave de cifrado web"],e:"Los registros NS indican qué servidores de nombres son responsables de una zona DNS."},
+  en:{q:"What is the purpose of an NS record in a zone?",o:["Assign an IPv4 address to a host","Identify the nameservers responsible for the zone","Define the mail server","Publish a web encryption key"],e:"NS records identify the nameservers responsible for a DNS zone."}
+},
+{
+  id:"F058",cat:"DNS Zones",level:"Advanced",answer:2,
+  es:{q:"¿Por qué una zona necesita información SOA además de sus registros NS?",o:["Porque SOA contiene todas las direcciones IP de Internet","Porque SOA reemplaza los registros A","Porque SOA aporta datos administrativos y temporizadores propios de la zona","Porque NS solo se utiliza para correo"],e:"NS identifica servidores autoritativos. SOA contiene información administrativa de la zona y parámetros relevantes para la sincronización entre servidores."},
+  en:{q:"Why does a zone need SOA information in addition to its NS records?",o:["Because SOA contains every Internet IP address","Because SOA replaces A records","Because SOA provides administrative data and zone-specific timers","Because NS is only used for email"],e:"NS identifies authoritative servers. SOA contains zone administrative information and parameters relevant to synchronization between servers."}
+},
+{
+  id:"F059",cat:"DNS Zones",level:"Advanced",answer:0,
+  es:{q:"Una zona contiene example.com. A 192.0.2.10 y www.example.com. CNAME example.com. ¿Qué describe el segundo registro?",o:["www.example.com es un alias de example.com","example.com es un alias de www.example.com","www.example.com es un servidor autoritativo","El registro crea una nueva zona"],e:"El CNAME hace que www.example.com sea un alias cuyo nombre canónico es example.com. No crea una zona independiente."},
+  en:{q:"A zone contains example.com. A 192.0.2.10 and www.example.com. CNAME example.com. What does the second record describe?",o:["www.example.com is an alias for example.com","example.com is an alias for www.example.com","www.example.com is an authoritative server","The record creates a new zone"],e:"The CNAME makes www.example.com an alias whose canonical name is example.com. It does not create an independent zone."}
+},
+{
+  id:"F060",cat:"DNS Zones",level:"Advanced",answer:3,
+  es:{q:"¿Qué problema puede surgir si se configura un CNAME en el ápice de una zona, por ejemplo example.com.?",o:["El nombre deja de ser válido como dominio","Se convierte automáticamente en un TLD","Se desactiva DNSSEC","El ápice debe contener registros como SOA y NS, lo que entra en conflicto con las restricciones de CNAME"],e:"Un nombre que tiene CNAME no debe coexistir con otros datos DNS. El ápice de una zona necesita SOA y NS, por lo que un CNAME convencional no es apropiado allí."},
+  en:{q:"What problem can arise if a CNAME is configured at a zone apex, such as example.com.?",o:["The name stops being a valid domain","It automatically becomes a TLD","DNSSEC is disabled","The apex must contain records such as SOA and NS, which conflicts with CNAME restrictions"],e:"A name with a CNAME must not coexist with other DNS data. A zone apex needs SOA and NS records, so a conventional CNAME is not appropriate there."}
+},
+{
+  id:"F061",cat:"DNS Zones",level:"Advanced",answer:1,
+  es:{q:"¿Qué es el ápice o apex de una zona DNS?",o:["El nombre del servidor raíz","El nombre que identifica la propia zona, como example.com.","El último registro del archivo","El primer servidor recursivo consultado"],e:"El ápice es el nombre de la zona en sí. Para una zona example.com, el ápice es example.com., también representado por @ en muchos archivos de zona."},
+  en:{q:"What is the apex of a DNS zone?",o:["The name of the root server","The name identifying the zone itself, such as example.com.","The last record in the file","The first recursive server queried"],e:"The apex is the name of the zone itself. For an example.com zone, the apex is example.com., also represented by @ in many zone files."}
+},
+{
+  id:"F062",cat:"DNS Zones",level:"Advanced",answer:2,
+  es:{q:"Una zona example.com delega dev.example.com. ¿Dónde debe encontrarse la información que permite descubrir los servidores de la zona hija?",o:["Únicamente en el navegador","En el archivo hosts de cada usuario","En la zona padre, mediante los registros de delegación NS","En el registro MX de example.com"],e:"La zona padre publica registros NS para la zona hija. Esa delegación permite que los resolvers descubran qué servidores deben consultar para los nombres dentro de dev.example.com."},
+  en:{q:"A zone for example.com delegates dev.example.com. Where must the information used to discover the child zone's servers be found?",o:["Only in the browser","In every user's hosts file","In the parent zone, through NS delegation records","In the MX record for example.com"],e:"The parent zone publishes NS records for the child zone. This delegation allows resolvers to discover which servers to query for names within dev.example.com."}
+},
 ];
 
 const TEXT = {
