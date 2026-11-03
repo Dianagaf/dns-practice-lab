@@ -1,54 +1,154 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DNS Practice Lab</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #101827;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    main {
-      max-width: 650px;
-      padding: 40px 24px;
-    }
-
-    h1 {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
-
-    p {
-      color: #b9c5d6;
-      line-height: 1.7;
-    }
-
-    .tag {
-      color: #62d6bd;
-      letter-spacing: 3px;
-      font-size: 13px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
+<title>DNS Practice Lab</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a2d;--panel2:#18233b;--text:#eef3ff;--muted:#a7b4cc;--line:#293752;--accent:#65e0c2;--accent2:#8da9ff;--danger:#ff8585;--good:#71e0a1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172544 0%,var(--bg) 55%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}.wrap{width:min(980px,calc(100% - 32px));margin:0 auto;padding:42px 0 70px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:46px}.brand{font-size:13px;letter-spacing:3px;color:var(--accent);font-weight:800}.top small{color:var(--muted)}
+.hero{max-width:720px;margin:0 auto 30px;text-align:center}.eyebrow{color:var(--accent);font-size:12px;letter-spacing:3px;font-weight:800}.hero h1{font-size:clamp(38px,7vw,64px);line-height:1.03;letter-spacing:-2px;margin:14px 0}.hero p{color:var(--muted);font-size:17px;line-height:1.7;margin:0 auto;max-width:620px}
+.panel{background:rgba(18,26,45,.92);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 24px 80px #0003}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0}.stat{background:var(--panel2);border:1px solid var(--line);border-radius:15px;padding:17px;text-align:center}.stat strong{display:block;font-size:27px}.stat span{font-size:12px;color:var(--muted)}
+.primary,.secondary{border:0;border-radius:12px;padding:14px 20px;font-weight:800}.primary{background:var(--accent);color:#09201c}.primary:hover{filter:brightness(1.06)}.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}.full{width:100%}.note{color:var(--muted);font-size:13px;line-height:1.6;margin-top:16px}
+.hidden{display:none!important}.exam-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:18px}.pill{border:1px solid var(--line);background:var(--panel2);padding:8px 12px;border-radius:99px;color:var(--muted);font-size:12px}.progress{height:7px;background:#26334c;border-radius:99px;overflow:hidden;margin:14px 0 26px}.progress>div{height:100%;width:0;background:var(--accent);transition:width .25s}
+.qmeta{font-size:12px;color:var(--accent);letter-spacing:1.4px;text-transform:uppercase;font-weight:800}.question{font-size:clamp(21px,3vw,28px);line-height:1.35;margin:12px 0 24px}.options{display:grid;gap:11px}.option{display:flex;align-items:flex-start;gap:13px;text-align:left;width:100%;padding:16px;border-radius:13px;border:1px solid var(--line);background:#111b30;color:var(--text);line-height:1.5}.option:hover:not(:disabled){border-color:var(--accent2);background:#192744}.letter{flex:0 0 28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#263653;color:var(--accent);font-weight:900;font-size:13px}.option.correct{border-color:var(--good);background:#123126}.option.wrong{border-color:var(--danger);background:#351e2b}.feedback{margin-top:17px;padding:16px;border-radius:13px;background:var(--panel2);border:1px solid var(--line);line-height:1.6;color:var(--muted)}.feedback strong{color:var(--text)}.actions{display:flex;justify-content:space-between;gap:12px;margin-top:22px}.actions button{min-width:130px}
+.result{text-align:center}.score{font-size:clamp(54px,10vw,86px);font-weight:900;letter-spacing:-4px;color:var(--accent);margin:10px}.result h2{font-size:30px;margin:8px}.result p{color:var(--muted);line-height:1.6}.review{margin-top:24px;text-align:left}.review-item{padding:16px 0;border-top:1px solid var(--line)}.review-item h3{font-size:16px;line-height:1.5}.review-item p{font-size:14px;margin:7px 0}
+footer{text-align:center;color:#71809b;font-size:12px;margin-top:28px}
+@media(max-width:600px){.wrap{padding-top:24px}.top{margin-bottom:30px}.panel{padding:19px}.stats{gap:7px}.stat{padding:13px 6px}.stat strong{font-size:22px}.actions button{min-width:0;flex:1}}
+</style>
 </head>
 <body>
+<div class="wrap">
+  <header class="top"><div class="brand">LEARN DNS / PRACTICE LAB</div><small>Teoría · práctica · evaluación</small></header>
   <main>
-    <div class="tag">LEARN DNS</div>
-    <h1>DNS Practice Lab</h1>
-    <p>
-      Bienvenido a tu laboratorio de práctica de DNS.
-      Aquí podrás poner a prueba tus conocimientos
-      con exámenes teóricos y ejercicios prácticos.
-    </p>
-    <p>Próximamente: 500 preguntas y exámenes aleatorios de 50 preguntas.</p>
+    <section id="home">
+      <div class="hero"><div class="eyebrow">TU LABORATORIO DE DNS</div><h1>DNS Practice Lab</h1><p>Entrena tu conocimiento de DNS con preguntas de teoría, escenarios reales y ejercicios de diagnóstico. Aprende de cada respuesta.</p></div>
+      <div class="panel">
+        <div class="stats">
+          <div class="stat"><strong id="bankCount">0</strong><span>preguntas disponibles</span></div>
+          <div class="stat"><strong>50</strong><span>preguntas por examen</span></div>
+          <div class="stat"><strong>100</strong><span>puntos posibles</span></div>
+        </div>
+        <button class="primary full" id="startBtn">Comenzar examen</button>
+        <p class="note">Cada intento selecciona preguntas al azar. Al responder verás una explicación; al terminar recibirás tu puntuación y podrás revisar tus respuestas. Los resultados se guardan en este navegador.</p>
+      </div>
+      <div class="panel" style="margin-top:16px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><strong>Tu progreso</strong><span class="pill" id="attemptCount">0 exámenes realizados</span></div>
+        <p class="note" id="historyText">Todavía no tienes resultados guardados. ¡Haz tu primer examen!</p>
+      </div>
+    </section>
+
+    <section id="exam" class="hidden">
+      <div class="exam-head"><span class="pill" id="counter">Pregunta 1 de 50</span><span class="pill" id="category">Fundamentos</span></div>
+      <div class="progress"><div id="progressBar"></div></div>
+      <div class="panel">
+        <div class="qmeta" id="qmeta">Pregunta</div>
+        <h2 class="question" id="questionText"></h2>
+        <div class="options" id="options"></div>
+        <div id="feedback" class="feedback hidden"></div>
+        <div class="actions"><button class="secondary" id="quitBtn">Salir</button><button class="primary" id="nextBtn" disabled>Siguiente</button></div>
+      </div>
+    </section>
+
+    <section id="result" class="hidden">
+      <div class="panel result">
+        <div class="eyebrow">EXAMEN COMPLETADO</div><div class="score" id="score">0/100</div><h2 id="resultTitle">Buen trabajo</h2><p id="resultSummary"></p>
+        <div class="stats"><div class="stat"><strong id="correctCount">0</strong><span>correctas</span></div><div class="stat"><strong id="wrongCount">0</strong><span>incorrectas</span></div><div class="stat"><strong>50</strong><span>preguntas</span></div></div>
+        <button class="primary full" id="againBtn">Hacer otro examen</button><button class="secondary full" style="margin-top:10px" id="homeBtn">Volver al inicio</button>
+      </div>
+      <div class="panel review"><h2>Revisión de respuestas</h2><div id="reviewList"></div></div>
+    </section>
   </main>
+  <footer>DNS Practice Lab · Aprende DNS practicando</footer>
+</div>
+<script>
+const variants = ["tienda.example","empresa.test","academia.example","proyecto.test","laboratorio.example"];
+const records = [
+ {category:"Fundamentos",q:"¿Cuál es la función principal del DNS?",a:"Traducir nombres de dominio a información como direcciones IP.",wrong:["Asignar direcciones IP automáticamente a los equipos.","Cifrar todo el tráfico de una página web.","Transportar los archivos de un sitio web."],why:"DNS permite localizar servicios mediante nombres legibles y obtener datos asociados, como direcciones IP."},
+ {category:"Jerarquía",q:"En el nombre api.{d}, ¿qué representa api?",a:"Un subdominio de {d}.",wrong:["El TLD de {d}.","El registrador de {d}.","El servidor raíz de {d}."],why:"api es una etiqueta situada a la izquierda del dominio; forma parte del nombre completo."},
+ {category:"Registros",q:"¿Qué tipo de registro relaciona un nombre con una dirección IPv4?",a:"A",wrong:["AAAA","CNAME","MX"],why:"A publica una dirección IPv4. AAAA se utiliza para IPv6."},
+ {category:"Registros",q:"¿Qué tipo de registro relaciona un nombre con una dirección IPv6?",a:"AAAA",wrong:["A","PTR","NS"],why:"AAAA almacena direcciones IPv6; A almacena direcciones IPv4."},
+ {category:"Registros",q:"¿Qué registro identifica los servidores de nombres responsables de una zona?",a:"NS",wrong:["MX","TXT","PTR"],why:"Los registros NS indican qué servidores DNS son autoritativos para la zona."},
+ {category:"Registros",q:"¿Qué registro se utiliza para crear un alias de otro nombre DNS?",a:"CNAME",wrong:["A","SOA","DS"],why:"CNAME indica que un nombre es un alias del nombre canónico indicado."},
+ {category:"Registros",q:"¿Qué registro contiene información administrativa esencial de una zona?",a:"SOA",wrong:["TXT","AAAA","MX"],why:"SOA identifica información de autoridad y parámetros de mantenimiento de la zona."},
+ {category:"Registros",q:"¿Qué registro indica los servidores que reciben correo para un dominio?",a:"MX",wrong:["NS","CNAME","PTR"],why:"MX identifica los servidores de intercambio de correo y su prioridad."},
+ {category:"Registros",q:"¿Qué registro puede publicar información de verificación o políticas de correo en texto?",a:"TXT",wrong:["AAAA","SOA","PTR"],why:"TXT permite publicar cadenas de texto utilizadas por distintos servicios, por ejemplo SPF y verificaciones."},
+ {category:"Zonas",q:"¿Qué describe mejor una zona DNS?",a:"Una parte del espacio de nombres DNS administrada como unidad.",wrong:["Cualquier nombre que tenga un punto.","Un archivo que contiene solamente direcciones IPv4.","El contrato de compra de un dominio."],why:"Una zona es un ámbito administrativo de DNS; puede cubrir un dominio o una parte delegada."},
+ {category:"Zonas",q:"¿Qué describe mejor un Zone File?",a:"Una representación textual de los registros de una zona DNS.",wrong:["El programa que registra dominios.","La dirección IP del servidor autoritativo.","La caché de un resolver recursivo."],why:"El Zone File contiene registros de la zona en un formato textual usado por servidores DNS."},
+ {category:"Zonas",q:"¿Qué registro debe existir en una zona para indicar su información de autoridad?",a:"SOA",wrong:["CNAME","AAAA","PTR"],why:"Toda zona DNS estándar tiene un registro SOA que marca su autoridad e incluye parámetros administrativos."},
+ {category:"Delegación",q:"¿Qué registro publica normalmente la zona padre para delegar una zona hija?",a:"NS",wrong:["MX","TXT","AAAA"],why:"La zona padre publica NS para indicar los servidores autoritativos de la zona hija."},
+ {category:"Delegación",q:"Delegar dev.{d} significa que…",a:"la zona hija dev.{d} queda bajo autoridad de los servidores indicados por la delegación.",wrong:["el dominio principal deja de existir.","todos los subdominios pasan al registrador.","se crea automáticamente un sitio web."],why:"La delegación establece una frontera de autoridad DNS para la zona hija."},
+ {category:"Delegación",q:"Si un nombre es un subdominio, ¿necesariamente es una zona independiente?",a:"No; puede seguir dentro de la zona padre.",wrong:["Sí, todo subdominio requiere su propio SOA.","Sí, todo subdominio necesita otro registrador.","No; los subdominios no pueden tener registros DNS."],why:"Un subdominio es una relación jerárquica de nombres. Solo es zona independiente si se crea esa zona y se delega."},
+ {category:"Servidores",q:"¿Qué hace un resolver recursivo para un cliente?",a:"Busca la respuesta DNS y se la devuelve al cliente.",wrong:["Registra la propiedad legal del dominio.","Edita directamente todos los Zone Files de Internet.","Aloja el contenido HTML del sitio."],why:"El resolver recursivo realiza el trabajo de resolución, usando caché y consultando otros servidores cuando hace falta."},
+ {category:"Servidores",q:"¿Qué caracteriza a un servidor autoritativo?",a:"Responde con datos oficiales de las zonas que sirve.",wrong:["Siempre realiza recursión para cualquier cliente.","Solo almacena resultados temporales de otros servidores.","Es necesariamente el servidor del registrador."],why:"El servidor autoritativo publica los datos de la zona bajo su autoridad."},
+ {category:"Servidores",q:"¿Qué diferencia hay entre un servidor primario y uno secundario?",a:"El primario es fuente de cambios de la zona y el secundario mantiene una copia sincronizada.",wrong:["El primario responde por IPv4 y el secundario por IPv6.","El secundario registra el dominio y el primario lo vende.","El primario solo usa UDP y el secundario solo TCP."],why:"Primario y secundario describen roles en la distribución y mantenimiento de los datos de una zona."},
+ {category:"Resolución",q:"¿Qué servidor consulta normalmente primero un equipo cuando necesita resolver un nombre?",a:"El resolver recursivo configurado para el equipo.",wrong:["Siempre un servidor raíz directamente.","Siempre el servidor autoritativo del TLD.","El servidor web del dominio."],why:"El equipo normalmente pregunta a un resolver configurado, que realiza el resto del proceso si no tiene la respuesta."},
+ {category:"Resolución",q:"¿Qué hace un servidor raíz durante una resolución DNS habitual?",a:"Indica a qué servidores del TLD consultar.",wrong:["Devuelve siempre la IP final del sitio web.","Aloja todos los Zone Files de los dominios.","Asigna el dominio al usuario."],why:"La raíz dirige al resolver hacia los servidores responsables del TLD, por ejemplo .com o .lat."},
+ {category:"Resolución",q:"¿Qué hace el servidor autoritativo de un TLD?",a:"Indica los servidores autoritativos delegados para un dominio dentro del TLD.",wrong:["Responde por todos los registros A de cada sitio.","Entrega certificados HTTPS.","Administra las cuentas de correo de todos los dominios."],why:"El TLD contiene delegaciones hacia los servidores autoritativos de los dominios registrados bajo él."},
+ {category:"Respuestas",q:"¿Qué significa NXDOMAIN en una respuesta DNS?",a:"Que el nombre consultado no existe.",wrong:["Que el nombre existe, pero no tiene dirección IPv4.","Que el servidor rechazó TCP.","Que el dominio expiró necesariamente."],why:"NXDOMAIN indica inexistencia del nombre consultado; no debe confundirse con NODATA."},
+ {category:"Respuestas",q:"¿Qué significa NODATA en el contexto de DNS?",a:"El nombre existe, pero no hay datos del tipo solicitado.",wrong:["El nombre no existe en DNS.","El servidor no conoce el TLD.","La respuesta fue truncada por UDP."],why:"NODATA suele representarse como NOERROR sin registros del tipo consultado, a diferencia de NXDOMAIN."},
+ {category:"Caché",q:"¿Qué controla el TTL de un registro DNS?",a:"Cuánto tiempo puede conservarse la información en caché.",wrong:["Cuánto tarda en registrarse un dominio.","Cuántos servidores autoritativos debe tener una zona.","El tamaño máximo de un Zone File."],why:"TTL establece el tiempo de vida de los datos almacenados en caché por resolvers."},
+ {category:"Caché",q:"Un registro tiene TTL 600. ¿A cuántos minutos equivale?",a:"10 minutos",wrong:["6 minutos","60 minutos","100 minutos"],why:"600 segundos divididos entre 60 segundos por minuto equivalen a 10 minutos."},
+ {category:"Transporte",q:"¿Qué puerto utiliza DNS normalmente?",a:"Puerto 53",wrong:["Puerto 25","Puerto 80","Puerto 443"],why:"DNS utiliza el puerto 53 tanto en UDP como en TCP."},
+ {category:"Transporte",q:"¿Qué transporte utiliza normalmente una consulta DNS convencional?",a:"UDP",wrong:["FTP","ICMP","SMTP"],why:"Las consultas DNS suelen usar UDP; TCP también se utiliza en transferencias y otros casos."},
+ {category:"Transporte",q:"Una respuesta DNS indica TC=1. ¿Qué significa?",a:"Que la respuesta fue truncada.",wrong:["Que la consulta fue cifrada.","Que el nombre no existe.","Que la zona no tiene SOA."],why:"TC señala truncamiento. El cliente suele repetir la consulta usando TCP."},
+ {category:"Transporte",q:"¿Para qué sirve EDNS en DNS?",a:"Amplía capacidades del protocolo DNS, por ejemplo el tamaño anunciado de mensajes UDP.",wrong:["Reemplaza los registros NS.","Cifra automáticamente todas las consultas.","Transfiere zonas completas mediante UDP."],why:"EDNS permite extender DNS sin cambiar el formato base, incluyendo opciones como el tamaño UDP anunciado."},
+ {category:"Herramientas",q:"¿Para qué sirve el comando dig?",a:"Para realizar consultas DNS y examinar las respuestas.",wrong:["Para comprar dominios.","Para editar páginas HTML.","Para crear certificados TLS automáticamente."],why:"dig es una herramienta de diagnóstico que permite consultar registros y ver detalles de la respuesta DNS."},
+ {category:"Herramientas",q:"En `dig @ns1.example test.example A`, ¿qué indica `@ns1.example`?",a:"El servidor DNS específico al que se envía la consulta.",wrong:["El nombre del registro que se solicita.","El TTL de la respuesta.","La dirección IP que se espera obtener."],why:"El símbolo @ seguido de un servidor indica a dig qué servidor debe consultar."},
+ {category:"Herramientas",q:"¿Qué comando consulta el registro MX de un dominio usando dig?",a:"dig example.com MX",wrong:["dig MX example.com A","dig example.com CNAME MX","dig example.com PORT 25"],why:"El tipo de registro se indica al final de la consulta, después del nombre."},
+ {category:"Transferencias",q:"¿Qué es AXFR?",a:"Una transferencia completa de una zona DNS.",wrong:["Una consulta para obtener una dirección IPv6.","Una notificación de cambios al resolver.","Un mecanismo de cifrado DNS."],why:"AXFR transfiere el contenido completo de una zona desde un servidor a otro."},
+ {category:"Transferencias",q:"¿Qué es IXFR?",a:"Una transferencia incremental de los cambios de una zona.",wrong:["Una transferencia completa obligatoria.","Una consulta inversa de direcciones IP.","Una respuesta negativa autenticada."],why:"IXFR permite transferir solo los cambios desde una versión anterior de la zona, cuando es posible."},
+ {category:"Transferencias",q:"¿Para qué se utiliza DNS NOTIFY?",a:"Para avisar a servidores secundarios que la zona pudo haber cambiado.",wrong:["Para notificar al registrador que se renovó un dominio.","Para cifrar las respuestas DNS.","Para enviar correo a los contactos del dominio."],why:"NOTIFY acelera la comprobación de cambios por parte de los secundarios."},
+ {category:"SOA",q:"¿Qué representa el campo SERIAL del SOA?",a:"La versión o número de serie de la zona.",wrong:["El número de servidores NS.","El TTL de todos los registros A.","El puerto de transferencia."],why:"El serial permite a los secundarios determinar si la versión de la zona cambió."},
+ {category:"SOA",q:"¿Qué representa REFRESH en el SOA?",a:"El intervalo tras el cual un secundario comprueba si la zona cambió.",wrong:["El tiempo máximo de caché de cualquier resolver.","El tiempo que tarda una consulta UDP.","El intervalo de renovación del dominio en el registrador."],why:"REFRESH indica cada cuánto tiempo el secundario debe comprobar el serial del primario."},
+ {category:"SOA",q:"¿Qué representa RETRY en el SOA?",a:"Cuánto espera un secundario antes de reintentar una comprobación fallida.",wrong:["Cuánto espera el usuario antes de volver a abrir el navegador.","Cuánto dura el registro del dominio.","Cuánto tiempo se conserva una respuesta positiva en caché."],why:"RETRY define el intervalo para reintentar cuando el contacto o actualización con el primario falla."},
+ {category:"SOA",q:"¿Qué representa EXPIRE en el SOA?",a:"El tiempo máximo que un secundario puede seguir sirviendo la zona sin lograr actualizarla.",wrong:["El tiempo de expiración del registro del dominio en el registrador.","El TTL máximo de un CNAME.","El tiempo de vida de una dirección IPv4."],why:"EXPIRE limita cuánto tiempo puede considerarse válida la copia secundaria sin poder refrescarla."},
+ {category:"DNSSEC",q:"¿Cuál es el objetivo principal de DNSSEC?",a:"Permitir validar la autenticidad e integridad de los datos DNS mediante firmas.",wrong:["Cifrar el contenido de las páginas web.","Ocultar los nombres de dominio en Internet.","Reemplazar los servidores autoritativos."],why:"DNSSEC aporta autenticación e integridad de los datos DNS; no cifra por sí mismo las consultas."},
+ {category:"DNSSEC",q:"¿Qué función cumple un registro DS en la delegación DNSSEC?",a:"Vincula la zona hija con una clave DNSKEY mediante un resumen criptográfico.",wrong:["Indica el servidor de correo de la zona hija.","Contiene directamente todas las direcciones IP.","Sustituye al registro SOA."],why:"DS se publica en la zona padre y permite construir la cadena de confianza hacia la zona hija."},
+ {category:"Correo",q:"En un registro MX, ¿qué significa un número de preferencia menor?",a:"Que el servidor tiene mayor prioridad para recibir correo.",wrong:["Que el servidor tiene menos prioridad.","Que el servidor acepta únicamente correo cifrado.","Que el servidor es autoritativo para la zona."],why:"Los valores de preferencia MX más bajos se intentan antes que los valores más altos."},
+ {category:"Registros",q:"¿Puede un nombre tener un CNAME y otros registros de datos ordinarios al mismo tiempo?",a:"En general no; un nombre con CNAME no debe coexistir con otros datos ordinarios.",wrong:["Sí, siempre que el TTL sea igual.","Sí, pero solo con registros MX.","No, porque CNAME solo funciona en la raíz de una zona."],why:"La regla general de DNS exige que un nombre con CNAME no tenga otros datos ordinarios asociados, con excepciones operativas específicas como ciertos metadatos."},
+ {category:"Jerarquía",q:"¿Qué parte de `www.shop.example.com` es el TLD?",a:".com",wrong:["www","shop","example"],why:"El TLD es la etiqueta más a la derecha del nombre: com."},
+ {category:"Jerarquía",q:"En `api.shop.example.com`, ¿cuál es el dominio registrable habitual?",a:"example.com",wrong:["api.shop","shop.example","com"],why:"En este ejemplo, example es el segundo nivel y .com es el TLD; juntos forman example.com."},
+ {category:"Operación",q:"Un usuario cambió un registro A, pero sigue viendo la IP anterior. ¿Cuál es una causa posible?",a:"Un resolver todavía conserva la respuesta anterior en caché dentro de su TTL.",wrong:["Los registros A nunca pueden cambiar.","El servidor raíz almacena la página web anterior.","El registro NS bloquea permanentemente los cambios A."],why:"La caché DNS puede seguir entregando el dato anterior hasta que expire su TTL."},
+ {category:"Operación",q:"¿Qué debes consultar para verificar directamente la respuesta del servidor autoritativo de una zona?",a:"Enviar la consulta dig indicando ese servidor con @.",wrong:["Consultar únicamente el navegador.","Consultar el servidor DHCP del router.","Ejecutar ping sin especificar nombre."],why:"Al usar @servidor en dig, preguntas directamente al servidor elegido y puedes comprobar su respuesta."}
+];
+const bank=[];
+variants.forEach((domain,vi)=>records.forEach((r,ri)=>{
+  const question=r.q.replaceAll("{d}",domain);
+  const opts=[{text:r.a,correct:true},...r.wrong.map(x=>({text:x,correct:false}))];
+  // The starter bank uses five contextual forms per concept to create varied practice scenarios.
+  const suffix = vi===0 ? "" : [""," Considera el mismo concepto aplicado a "+domain+"."," En un laboratorio cuyo dominio es "+domain+", ¿qué interpretación corresponde?"," Si administras "+domain+", ¿qué afirmación es correcta?"," Para diagnosticar "+domain+", ¿qué opción describe el comportamiento?"][vi];
+  bank.push({id:`${ri}-${vi}`,category:r.category,question:question+suffix,options:opts,explanation:r.why});
+}));
+let exam=[],index=0,answers=[];
+const $=id=>document.getElementById(id);
+function shuffle(a){const x=[...a];for(let i=x.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}return x;}
+function show(id){["home","exam","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id));}
+function start(){exam=shuffle(bank).slice(0,50);index=0;answers=[];show("exam");render();}
+function render(){
+ const q=exam[index];$("counter").textContent=`Pregunta ${index+1} de 50`;$("category").textContent=q.category;$("qmeta").textContent=`DNS / ${q.category}`;$("questionText").textContent=q.question;$("progressBar").style.width=`${index/50*100}%`;$("feedback").classList.add("hidden");$("nextBtn").disabled=true;$("nextBtn").textContent=index===49?"Ver resultados":"Siguiente";
+ const options=$("options");options.innerHTML="";
+ shuffle(q.options).forEach((o,i)=>{const b=document.createElement("button");b.className="option";b.innerHTML=`<span class="letter">${String.fromCharCode(65+i)}</span><span></span>`;b.querySelector("span:last-child").textContent=o.text;b.addEventListener("click",()=>choose(o,b));options.appendChild(b);});
+}
+function choose(selected,button){
+ const q=exam[index];const correct=q.options.find(o=>o.correct);const isCorrect=selected.correct;answers[index]={selected:selected.text,correct:correct.text,isCorrect,explanation:q.explanation};
+ [...$("options").children].forEach(b=>{b.disabled=true;const label=b.querySelector("span:last-child").textContent;if(label===correct.text)b.classList.add("correct");else if(b===button&&!isCorrect)b.classList.add("wrong");});
+ $("feedback").classList.remove("hidden");$("feedback").innerHTML=`<strong>${isCorrect?"¡Respuesta correcta!":"Respuesta incorrecta."}</strong><br>${q.explanation}`;$("nextBtn").disabled=false;
+}
+function finish(){
+ const correct=answers.filter(a=>a.isCorrect).length;const score=Math.round(correct/50*100);const history=JSON.parse(localStorage.getItem("dnsPracticeHistory")||"[]");history.unshift({date:new Date().toLocaleString("es-CR"),score,correct});localStorage.setItem("dnsPracticeHistory",JSON.stringify(history.slice(0,20)));
+ $("score").textContent=`${score}/100`;$("correctCount").textContent=correct;$("wrongCount").textContent=50-correct;$("resultTitle").textContent=score>=90?"¡Excelente dominio!":score>=75?"¡Buen trabajo!":score>=60?"Vas por buen camino":"Hay conceptos que conviene reforzar";$("resultSummary").textContent=`Obtuviste ${correct} respuestas correctas de 50. Cada pregunta vale 2 puntos.`;$("reviewList").innerHTML="";
+ exam.forEach((q,i)=>{const a=answers[i];const el=document.createElement("div");el.className="review-item";const h=document.createElement("h3");h.textContent=`${i+1}. ${q.question}`;const p1=document.createElement("p");p1.textContent=`Tu respuesta: ${a.selected} ${a.isCorrect?"✓":"✗"}`;const p2=document.createElement("p");p2.textContent=`Respuesta correcta: ${a.correct}`;const p3=document.createElement("p");p3.textContent=q.explanation;el.append(h,p1,p2,p3);$("reviewList").appendChild(el);});
+ const count=history.length;$("attemptCount").textContent=`${count} ${count===1?"examen realizado":"exámenes realizados"}`;$("historyText").textContent=count?`Último resultado: ${history[0].score}/100 · ${history[0].date}`:"Todavía no tienes resultados guardados.";
+ show("result");
+}
+function refreshHistory(){const h=JSON.parse(localStorage.getItem("dnsPracticeHistory")||"[]");$("attemptCount").textContent=`${h.length} ${h.length===1?"examen realizado":"exámenes realizados"}`;$("historyText").textContent=h.length?`Último resultado: ${h[0].score}/100 · ${h[0].date}`:"Todavía no tienes resultados guardados.";}
+$("startBtn").onclick=start;$("nextBtn").onclick=()=>{if(index===49)finish();else{index++;render();}};$("quitBtn").onclick=()=>{if(confirm("¿Quieres salir del examen? Perderás el progreso de este intento.")){show("home");refreshHistory();}};$("againBtn").onclick=start;$("homeBtn").onclick=()=>{show("home");refreshHistory();};document.getElementById("bankCount").textContent=bank.length;
+refreshHistory();
+</script>
 </body>
 </html>
