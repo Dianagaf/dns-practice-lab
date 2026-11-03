@@ -1,586 +1,433 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#100d1c">
-<title>DNS Practice Lab</title>
-<style>
 :root {
-  --bg:#0d0b16;
-  --panel:#171426;
-  --panel2:#201b32;
-  --purple:#9b75ff;
-  --purple2:#7045d8;
-  --text:#f3efff;
-  --muted:#a49bb9;
-  --border:#302943;
-  --green:#48d6a0;
-  --red:#ff7189;
+  --bg: #0B0D17;
+  --panel: #15192A;
+  --panel2: #1D2338;
+
+  --purple: #9B7BFF;
+  --purple2: #6C8CFF;
+  --lavender: #C4A7FF;
+
+  --text: #F4F2FF;
+  --muted: #A5ABC4;
+  --border: #303650;
+
+  --green: #42D6A4;
+  --red: #FF647C;
+  --warning: #FFC66D;
+  --info: #6C8CFF;
+
+  --gradient: linear-gradient(110deg,#9B7BFF,#6C8CFF);
+  --glow: 0 0 28px #9B7BFF18;
 }
-* {box-sizing:border-box}
+
+* { box-sizing: border-box; }
+
 body {
-  margin:0;
-  background:radial-gradient(ellipse at 50% -20%,#30204e 0%,var(--bg) 55%);
-  color:var(--text);
-  font-family:Inter,system-ui,-apple-system,sans-serif;
-  min-height:100vh;
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 50% -15%,#242044 0%,transparent 48%),
+    var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
 }
-button {font:inherit;cursor:pointer}
-button:focus-visible {outline:2px solid var(--purple);outline-offset:3px}
+
+button, select { font: inherit; }
+button { cursor: pointer; }
+
+button:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--lavender);
+  outline-offset: 3px;
+}
+
 header {
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 6%;border-bottom:1px solid var(--border);
-  background:#100d1ce8;position:sticky;top:0;z-index:5;
-  backdrop-filter:blur(12px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 6%;
+  background: #0B0D17E8;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  backdrop-filter: blur(16px);
 }
-.brand {display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.3px}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  letter-spacing: .5px;
+}
+
+.brand small {
+  display: block;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
 .logo {
-  width:40px;height:40px;border-radius:12px;
-  display:grid;place-items:center;
-  background:linear-gradient(135deg,#a17bff,#6039c5);
-  font-size:21px;box-shadow:0 5px 25px #8054e955;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--gradient);
+  color: white;
+  box-shadow: 0 0 22px #9B7BFF35;
 }
-.brand small {display:block;color:var(--muted);font-size:11px;font-weight:500}
-.header-right {display:flex;align-items:center;gap:12px}
+
 select {
-  background:var(--panel2);color:var(--text);
-  border:1px solid var(--border);padding:10px 14px;
-  border-radius:10px;
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  border-radius: 10px;
 }
-main {width:min(1050px,92%);margin:48px auto 80px}
-.view {display:none}
-.view.active {display:block}
-.hero {text-align:center;padding:30px 10px 38px}
+
+main {
+  width: min(1050px,92%);
+  margin: 45px auto 80px;
+}
+
+.hero { text-align: center; padding: 30px 10px; }
+
 .eyebrow {
-  color:#b89cff;text-transform:uppercase;letter-spacing:2px;
-  font-size:11px;font-weight:800;
+  color: var(--lavender);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
-h1 {font-size:clamp(34px,6vw,58px);line-height:1.08;margin:16px 0}
+
+h1 {
+  font-size: clamp(34px,6vw,58px);
+  line-height: 1.1;
+  margin: 16px 0;
+}
+
 .gradient {
-  background:linear-gradient(90deg,#c4aaff,#8a62f2,#d7bfff);
-  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-.subtitle {color:var(--muted);max-width:620px;margin:0 auto;line-height:1.7}
-.grid {display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:28px 0}
-.stat,.card {
-  background:linear-gradient(145deg,var(--panel),#141120);
-  border:1px solid var(--border);border-radius:17px;padding:22px;
+
+.subtitle {
+  color: var(--muted);
+  max-width: 620px;
+  margin: auto;
+  line-height: 1.7;
 }
-.stat strong {display:block;font-size:27px;margin-bottom:5px}
-.stat span {font-size:12px;color:var(--muted)}
-.actions {display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:25px 0}
-.primary,.secondary {
-  border:0;border-radius:11px;padding:14px 23px;font-weight:750;
-  transition:.2s;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 15px;
+  margin: 28px 0;
 }
-.primary {background:linear-gradient(135deg,#a17aff,#7045d8);color:white;box-shadow:0 8px 25px #8154e633}
-.primary:hover {transform:translateY(-2px);filter:brightness(1.1)}
-.secondary {background:var(--panel2);border:1px solid var(--border);color:var(--text)}
-.secondary:hover {border-color:var(--purple)}
-.section-title {font-size:19px;margin:28px 0 14px}
-.muted {color:var(--muted)}
-.quiz-top {display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
-.pill {font-size:12px;padding:7px 11px;border:1px solid var(--border);border-radius:30px;color:#c4b4ff;background:#211a34}
-.progress-track {height:7px;background:#292239;border-radius:20px;overflow:hidden;margin-bottom:30px}
-.progress-fill {height:100%;background:linear-gradient(90deg,#7951dc,#c3a5ff);width:0%;transition:.3s}
-.question-number {font-size:13px;color:var(--muted);margin-bottom:12px}
-.question {font-size:clamp(21px,3vw,29px);line-height:1.4;margin:0 0 25px}
-.options {display:grid;gap:12px}
+
+.stat, .card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: var(--glow);
+}
+
+.stat strong {
+  display: block;
+  font-size: 27px;
+  margin-bottom: 5px;
+  color: var(--lavender);
+}
+
+.stat span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 25px 0;
+}
+
+.primary, .secondary {
+  border-radius: 11px;
+  padding: 14px 23px;
+  font-weight: 750;
+  transition: transform .2s, filter .2s, border-color .2s;
+}
+
+.primary {
+  border: none;
+  color: white;
+  background: var(--gradient);
+  box-shadow: 0 6px 24px #9B7BFF35;
+}
+
+.primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.12);
+}
+
+.secondary {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.secondary:hover {
+  border-color: var(--purple);
+  background: #292644;
+}
+
+.section-title {
+  font-size: 19px;
+  margin: 28px 0 14px;
+}
+
+.muted { color: var(--muted); }
+
+.pill {
+  font-size: 12px;
+  padding: 7px 12px;
+  border: 1px solid #9B7BFF55;
+  border-radius: 30px;
+  color: var(--lavender);
+  background: #9B7BFF12;
+}
+
+.progress-track {
+  height: 7px;
+  background: var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--gradient);
+  box-shadow: 0 0 12px #9B7BFF60;
+  transition: width .3s ease;
+}
+
+.question-number {
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.question {
+  font-size: clamp(21px,3vw,29px);
+  line-height: 1.4;
+  margin-bottom: 25px;
+}
+
+.options {
+  display: grid;
+  gap: 12px;
+}
+
 .option {
-  width:100%;text-align:left;padding:17px 18px;
-  background:var(--panel);border:1px solid var(--border);
-  color:var(--text);border-radius:12px;display:flex;gap:14px;
-  align-items:center;line-height:1.5;transition:.2s;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-align: left;
+  padding: 17px 18px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 12px;
+  line-height: 1.5;
+  transition: .2s;
 }
-.option:hover:not(:disabled) {border-color:var(--purple);background:#211a34}
+
+.option:hover:not(:disabled) {
+  border-color: var(--purple);
+  background: var(--panel2);
+  transform: translateX(3px);
+}
+
 .option .letter {
-  width:30px;height:30px;flex:0 0 30px;border-radius:9px;
-  background:var(--panel2);display:grid;place-items:center;
-  color:#c8b5ff;font-weight:800;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--panel2);
+  color: var(--lavender);
+  font-weight: 800;
 }
-.option.selected {border-color:var(--purple);background:#291f40}
-.option.correct {border-color:var(--green);background:#12372d}
-.option.wrong {border-color:var(--red);background:#3a1e2a}
-.option:disabled {cursor:default;opacity:1}
-.feedback {display:none;margin-top:20px;padding:19px;border-radius:13px;line-height:1.6}
-.feedback.show {display:block}
-.feedback.good {background:#14362d;border:1px solid #286b53}
-.feedback.bad {background:#391e2a;border:1px solid #854053}
-.feedback strong {display:block;margin-bottom:7px}
-.quiz-footer {display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:25px}
-.result-score {font-size:clamp(55px,10vw,90px);font-weight:850;letter-spacing:-4px}
-.result-score span {font-size:24px;color:var(--muted);letter-spacing:0}
-.result-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
-.result-box {padding:20px;background:var(--panel2);border-radius:13px;text-align:center}
-.result-box strong {display:block;font-size:25px}
-.result-box small {color:var(--muted)}
-.review-item {margin:15px 0}
-.review-item h3 {font-size:16px;line-height:1.5}
-.review-item p {font-size:13px;line-height:1.6;color:var(--muted)}
-.review-answer {padding:10px 13px;border-radius:9px;margin:8px 0;font-size:13px}
-.review-answer.good {background:#14362d}
-.review-answer.bad {background:#391e2a}
-.history-row {display:flex;justify-content:space-between;gap:12px;padding:15px 0;border-bottom:1px solid var(--border)}
-.history-row strong {font-size:18px}
-.empty {padding:35px;text-align:center;color:var(--muted)}
-footer {text-align:center;color:#716982;font-size:12px;padding:25px;border-top:1px solid var(--border)}
+
+.option.selected {
+  border-color: var(--purple);
+  background: #9B7BFF18;
+}
+
+.option.correct {
+  border-color: var(--green);
+  background: #42D6A415;
+}
+
+.option.wrong {
+  border-color: var(--red);
+  background: #FF647C15;
+}
+
+.option:disabled { opacity: 1; cursor: default; }
+
+.feedback {
+  display: none;
+  margin-top: 20px;
+  padding: 19px;
+  border-radius: 13px;
+  line-height: 1.6;
+}
+
+.feedback.show { display: block; }
+.feedback strong { display: block; margin-bottom: 7px; }
+
+.feedback.good {
+  background: #42D6A415;
+  border: 1px solid #42D6A455;
+  color: var(--green);
+}
+
+.feedback.bad {
+  background: #FF647C15;
+  border: 1px solid #FF647C55;
+  color: var(--red);
+}
+
+.quiz-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.result-score {
+  font-size: clamp(55px,10vw,90px);
+  font-weight: 850;
+  letter-spacing: -4px;
+  color: var(--lavender);
+}
+
+.result-score span {
+  font-size: 24px;
+  color: var(--muted);
+  letter-spacing: 0;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.result-box {
+  padding: 20px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  text-align: center;
+}
+
+.result-box strong {
+  display: block;
+  font-size: 25px;
+  color: var(--lavender);
+}
+
+.result-box small { color: var(--muted); }
+
+.review-item { margin: 15px 0; }
+
+.review-item h3 {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.review-item p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.review-answer {
+  padding: 10px 13px;
+  border-radius: 9px;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.review-answer.good {
+  background: #42D6A415;
+  color: var(--green);
+}
+
+.review-answer.bad {
+  background: #FF647C15;
+  color: var(--red);
+}
+
+.history-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.history-row strong { color: var(--lavender); }
+
+.empty {
+  padding: 35px;
+  text-align: center;
+  color: var(--muted);
+}
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 25px;
+  border-top: 1px solid var(--border);
+}
+
 @media(max-width:650px) {
-  header {padding:14px 4%}
-  main {margin-top:25px}
-  .grid {grid-template-columns:1fr}
-  .result-grid {grid-template-columns:1fr}
-  .quiz-top {align-items:flex-start;flex-direction:column}
-  .quiz-footer {align-items:stretch;flex-direction:column}
-  .quiz-footer button {width:100%}
-  .hero {padding-top:20px}
-}
-</style>
-</head>
-<body>
-<header>
-  <div class="brand">
-    <div class="logo">⌘</div>
-    <div>DNS PRACTICE LAB<small>ADVANCED DNS TRAINING</small></div>
-  </div>
-  <div class="header-right">
-    <select id="language" aria-label="Language">
-      <option value="en">English</option>
-      <option value="es">Español</option>
-    </select>
-  </div>
-</header>
-
-<main>
-  <section id="home" class="view active">
-    <div class="hero">
-      <div class="eyebrow" id="eyebrow">Technical certification preparation</div>
-      <h1 id="heroTitle">Master <span class="gradient">DNS</span></h1>
-      <p class="subtitle" id="heroSubtitle">Test your knowledge of DNS architecture, records, delegation, resolution, security and real-world troubleshooting.</p>
-      <div class="actions">
-        <button class="primary" id="startBtn">Start examination →</button>
-        <button class="secondary" id="historyBtn">View history</button>
-      </div>
-    </div>
-    <div class="grid">
-      <div class="stat"><strong id="bankCount">12</strong><span id="bankLabel">Questions in current bank</span></div>
-      <div class="stat"><strong>50</strong><span id="examLabel">Target questions per exam</span></div>
-      <div class="stat"><strong id="attemptCount">0</strong><span id="attemptLabel">Completed attempts</span></div>
-    </div>
-    <h2 class="section-title" id="aboutTitle">Your training dashboard</h2>
-    <div class="card">
-      <p class="muted" id="aboutText">Each attempt selects questions randomly without repetition. Your results and history are stored locally in this browser.</p>
-      <p class="muted" id="bankNotice">Development version: the question bank is being expanded in modules. The exam currently uses all available questions when fewer than 50 exist.</p>
-    </div>
-    <h2 class="section-title" id="statsTitle">Performance by category</h2>
-    <div id="categoryStats" class="card"><div class="empty">No completed exams yet.</div></div>
-  </section>
-
-  <section id="quiz" class="view">
-    <div class="quiz-top">
-      <span class="pill" id="categoryPill">Category</span>
-      <span class="muted" id="progressText">Question 1 of 12</span>
-    </div>
-    <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
-    <div class="question-number" id="questionNumber">QUESTION 01</div>
-    <h2 class="question" id="questionText"></h2>
-    <div class="options" id="options"></div>
-    <div id="feedback" class="feedback" aria-live="polite"></div>
-    <div class="quiz-footer">
-      <button class="secondary" id="exitBtn">Exit exam</button>
-      <button class="primary" id="nextBtn" disabled>Next question →</button>
-    </div>
-  </section>
-
-  <section id="result" class="view">
-    <div class="hero">
-      <div class="eyebrow" id="resultEyebrow">EXAM COMPLETED</div>
-      <h1 id="resultTitle">Your results</h1>
-      <div class="result-score"><span id="score">0</span><span>/100</span></div>
-      <p class="subtitle" id="resultMessage"></p>
-    </div>
-    <div class="result-grid">
-      <div class="result-box"><strong id="correctCount">0</strong><small id="correctLabel">Correct</small></div>
-      <div class="result-box"><strong id="wrongCount">0</strong><small id="wrongLabel">Incorrect</small></div>
-      <div class="result-box"><strong id="percentage">0%</strong><small id="percentageLabel">Score</small></div>
-    </div>
-    <div class="actions">
-      <button class="primary" id="reviewBtn">Review answers</button>
-      <button class="secondary" id="againBtn">New examination</button>
-      <button class="secondary" id="homeBtn">Home</button>
-    </div>
-  </section>
-
-  <section id="review" class="view">
-    <h1 id="reviewTitle">Answer review</h1>
-    <p class="muted" id="reviewSubtitle">Review your choices and explanations.</p>
-    <div id="reviewList"></div>
-    <div class="actions">
-      <button class="primary" id="reviewHomeBtn">Back to dashboard</button>
-      <button class="secondary" id="reviewAgainBtn">New examination</button>
-    </div>
-  </section>
-
-  <section id="history" class="view">
-    <h1 id="historyTitle">Examination history</h1>
-    <p class="muted" id="historySubtitle">Your previous attempts, stored on this device.</p>
-    <div class="card" id="historyList"></div>
-    <div class="actions"><button class="secondary" id="historyHomeBtn">Back to dashboard</button></div>
-  </section>
-</main>
-<footer>DNS PRACTICE LAB · <span id="footerText">Independent DNS learning environment</span></footer>
-
-<script>
-"use strict";
-
-const QUESTIONS = [
-{
- id:"F001",cat:"DNS Fundamentals",level:"Basic",answer:0,
- es:{q:"¿Qué problema resuelve principalmente DNS para una aplicación cliente?",o:["Convierte nombres legibles en información de red, como direcciones IP","Cifra automáticamente todo el tráfico HTTP","Asigna direcciones IP dinámicas a los equipos","Verifica la identidad del usuario"],e:"DNS permite localizar servicios mediante nombres. No sustituye a TLS, DHCP ni a los mecanismos de autenticación."},
- en:{q:"What primary problem does DNS solve for a client application?",o:["It maps human-readable names to network information such as IP addresses","It automatically encrypts all HTTP traffic","It assigns dynamic IP addresses to hosts","It verifies a user's identity"],e:"DNS lets clients locate services by name. It does not replace TLS, DHCP, or authentication."}
-},
-{
- id:"F002",cat:"DNS Fundamentals",level:"Intermediate",answer:1,
- es:{q:"Un navegador ya tiene una conexión TCP con una dirección IP. ¿Qué afirmación describe mejor el papel de DNS en esa conexión?",o:["DNS debe consultarse antes de cada segmento TCP","DNS normalmente participó antes de establecer la conexión, pero no transporta los segmentos TCP","DNS encapsula los segmentos TCP","El servidor DNS mantiene el estado de la conexión HTTP"],e:"La resolución suele ocurrir antes de conectar. Una vez obtenida la dirección, TCP intercambia datos directamente con el destino."},
- en:{q:"A browser already has a TCP connection to an IP address. Which statement best describes DNS's role in that connection?",o:["DNS must be queried before every TCP segment","DNS usually helped before the connection was established, but it does not carry TCP segments","DNS encapsulates TCP segments","The DNS server maintains the HTTP connection state"],e:"Name resolution generally happens before connecting. Once the address is known, TCP exchanges data directly with the destination."}
-},
-{
- id:"F003",cat:"DNS Fundamentals",level:"Advanced",answer:1,
- es:{q:"Un servicio cambia su dirección IP, pero algunos clientes siguen llegando a la anterior. ¿Qué mecanismo explica mejor este comportamiento?",o:["Una consulta recursiva en tiempo real","Una respuesta anterior que permanece en caché hasta que vence su TTL","El número de serie SOA obliga a conservar la IP","El registro NS convierte la dirección anterior en permanente"],e:"Los resolvers pueden almacenar respuestas durante el TTL. Cambiar el servidor autoritativo no invalida instantáneamente todas las cachés."},
- en:{q:"A service changes its IP address, but some clients keep reaching the old one. Which mechanism best explains this behavior?",o:["A recursive query running in real time","A previous answer remaining cached until its TTL expires","The SOA serial forces the old IP to be retained","The NS record makes the old address permanent"],e:"Resolvers can cache answers for the TTL. Changing authoritative data does not instantly invalidate every cache."}
-},
-{
- id:"F004",cat:"Domain Names and Hierarchy",level:"Basic",answer:3,
- es:{q:"En `api.shop.example.com.`, ¿qué etiqueta está más cerca de la raíz DNS?",o:["api","shop","example","com"],e:"La jerarquía DNS se lee desde la derecha. `com` es el TLD y está inmediatamente debajo de la raíz."},
- en:{q:"In `api.shop.example.com.`, which label is closest to the DNS root?",o:["api","shop","example","com"],e:"DNS hierarchy is read from right to left. `com` is the TLD and sits immediately below the root."}
-},
-{
- id:"F005",cat:"Domain Names and Hierarchy",level:"Intermediate",answer:1,
- es:{q:"¿Qué representa el punto final en `www.example.net.`?",o:["El final de la etiqueta www","La raíz del espacio de nombres DNS","El separador entre dominio y puerto","Una indicación de IPv6"],e:"El punto final representa la etiqueta raíz. El nombre escrito así es absoluto."},
- en:{q:"What does the trailing dot in `www.example.net.` represent?",o:["The end of the www label","The root label of the DNS namespace","The separator between domain and port","An indication of IPv6"],e:"The trailing dot represents the root label. The name is written as an absolute name."}
-},
-{
- id:"F006",cat:"TLD, SLD and Subdomains",level:"Basic",answer:3,
- es:{q:"En `store.example.co.uk`, ¿cuál es el TLD inmediato?",o:["store","example","co","uk"],e:"La etiqueta más a la derecha es `uk`, el TLD. `co.uk` es una estructura de registro de segundo nivel."},
- en:{q:"In `store.example.co.uk`, what is the immediate top-level domain?",o:["store","example","co","uk"],e:"The rightmost label is `uk`, the TLD. `co.uk` is a second-level registration structure."}
-},
-{
- id:"F007",cat:"TLD, SLD and Subdomains",level:"Intermediate",answer:1,
- es:{q:"Si una organización controla `example.com`, ¿qué afirmación sobre `dev.example.com` es correcta?",o:["Siempre debe comprarse por separado","Puede crearse como subdominio sin registrar otro dominio","Solo existe si `.dev` es un TLD","Es necesariamente una zona independiente"],e:"Un titular puede crear subdominios mediante DNS. Separarlo en una zona independiente es una decisión adicional."},
- en:{q:"If an organization controls `example.com`, which statement about `dev.example.com` is correct?",o:["It must always be purchased separately","It can be created as a subdomain without registering another domain","It can exist only if `.dev` is a TLD","It is necessarily a separate zone"],e:"A registrant can create subdomains through DNS. Making one a separate zone is an additional decision."}
-},
-{
- id:"F008",cat:"Registrars and Registries",level:"Basic",answer:1,
- es:{q:"¿Cuál describe mejor la función de un registrar de dominios?",o:["Opera todos los servidores raíz","Gestiona el registro de nombres para clientes mediante el registry correspondiente","Resuelve todas las consultas DNS","Firma automáticamente todas las zonas"],e:"El registrar ofrece el servicio de registro al cliente y se comunica con el registry del TLD. No tiene que alojar el DNS autoritativo."},
- en:{q:"Which best describes the role of a domain registrar?",o:["It operates all root servers","It manages domain registrations for customers through the relevant registry","It resolves every DNS query","It automatically signs every zone"],e:"A registrar provides registration services to customers and interacts with the TLD registry. It does not have to host authoritative DNS."}
-},
-{
- id:"F009",cat:"Registrars and Registries",level:"Intermediate",answer:0,
- es:{q:"¿Qué sistema mantiene la base central de registros para dominios bajo un TLD como `.com`?",o:["El registry del TLD","El navegador del registrante","El servidor DHCP","El resolver recursivo del ISP"],e:"El registry mantiene los datos centrales de registro del TLD y publica la información de delegación en la zona del TLD."},
- en:{q:"Which system maintains the central registration database for domains under a TLD such as `.com`?",o:["The TLD registry","The registrant's browser","The DHCP server","The ISP's recursive resolver"],e:"The registry maintains the TLD's central registration data and publishes delegation information in the TLD zone."}
-},
-{
- id:"F010",cat:"DNS Domains vs Zones",level:"Basic",answer:1,
- es:{q:"¿Cuál es la diferencia esencial entre un dominio DNS y una zona DNS?",o:["Son sinónimos exactos","El dominio es una rama del espacio de nombres; la zona es la porción administrada como un conjunto autoritativo","La zona siempre contiene más nombres","El dominio solo existe en resolvers"],e:"Un dominio es una parte jerárquica del namespace. Una zona es la parte administrada como datos autoritativos, excluyendo las ramas delegadas."},
- en:{q:"What is the essential difference between a DNS domain and a DNS zone?",o:["They are exact synonyms","A domain is a branch of the namespace; a zone is the portion administered as one authoritative data set","A zone always contains more names","A domain exists only on resolvers"],e:"A domain is a hierarchical part of the namespace. A zone is the portion administered as authoritative data, excluding delegated branches."}
-},
-{
- id:"F011",cat:"DNS Domains vs Zones",level:"Advanced",answer:0,
- es:{q:"Una zona `example.net` contiene `dev.example.net` como nombres ordinarios, sin delegación. ¿Qué afirmación es correcta?",o:["Puede ser un subdominio sin ser una zona separada","La ausencia de delegación hace inválido el nombre","Todo subdominio exige un archivo independiente","Pasa a ser un TLD privado"],e:"No todos los subdominios son zonas separadas. Sin un corte de zona, sus registros pueden pertenecer a la zona padre."},
- en:{q:"A zone `example.net` contains `dev.example.net` as ordinary names, with no delegation. Which statement is correct?",o:["It can be a subdomain without being a separate zone","The lack of delegation makes the name invalid","Every subdomain requires a separate zone file","It becomes a private TLD"],e:"Not every subdomain is a separate zone. Without a zone cut, its records can belong to the parent zone."}
-},
-{
- id:"F012",cat:"DNS Domains vs Zones",level:"Expert",answer:1,
- es:{q:"¿Qué dato demuestra más directamente que existe un corte de zona para `child.example.com`?",o:["Un registro A para `www.child.example.com`","Una delegación NS de `child.example.com` publicada en la zona padre","Un TTL bajo en el SOA padre","Un registro TXT llamado `child`"],e:"La delegación NS en la zona padre indica que la autoridad de la zona hija se encuentra en los servidores nombrados. Un A aislado no crea una zona hija."},
- en:{q:"Which data most directly demonstrates that a zone cut exists for `child.example.com`?",o:["An A record for `www.child.example.com`","An NS delegation for `child.example.com` published in the parent zone","A low TTL in the parent SOA","A TXT record named `child`"],e:"The NS delegation in the parent indicates that the child zone's authority is at the named servers. An isolated A record does not create a child zone."}
-}
-];
-
-const TEXT = {
- en:{
-  eyebrow:"Technical certification preparation",
-  subtitle:"Test your knowledge of DNS architecture, records, delegation, resolution, security and real-world troubleshooting.",
-  start:"Start examination →",history:"View history",bank:"Questions in current bank",target:"Target questions per exam",attempts:"Completed attempts",
-  about:"Your training dashboard",aboutText:"Each attempt selects questions randomly without repetition. Your results and history are stored locally in this browser.",
-  notice:"Development version: the question bank is being expanded in modules. The exam currently uses all available questions when fewer than 50 exist.",
-  stats:"Performance by category",empty:"No completed exams yet.",next:"Next question →",finish:"Finish examination",
-  exit:"Exit exam",correct:"Correct",wrong:"Incorrect",score:"Score",completed:"EXAM COMPLETED",
-  result:"Your results",review:"Review answers",again:"New examination",home:"Home",
-  reviewSub:"Review your choices and explanations.",historySub:"Your previous attempts, stored on this device.",
-  back:"Back to dashboard",selected:"Your answer",right:"Correct answer",explanation:"Explanation",
-  good:"Correct answer!",bad:"Not quite. Review the correct answer below.",
-  unanswered:"Not answered",confirmExit:"Exit this examination? Your current attempt will be lost.",
-  passed:"Excellent work! You passed this practice attempt.",failed:"Keep practicing. Review the explanations and try again.",
-  question:"Question",of:"of",level:"Level",date:"Date",noHistory:"No attempts recorded yet.",
-  scoreByCategory:"Category performance",footer:"Independent DNS learning environment",
-  startError:"The question bank is empty."
- },
- es:{
-  eyebrow:"Preparación para certificaciones técnicas",
-  subtitle:"Evalúa tus conocimientos sobre arquitectura DNS, registros, delegación, resolución, seguridad y diagnóstico real.",
-  start:"Comenzar examen →",history:"Ver historial",bank:"Preguntas en el banco actual",target:"Objetivo por examen",attempts:"Exámenes completados",
-  about:"Tu panel de aprendizaje",aboutText:"Cada intento selecciona preguntas aleatorias sin repetirlas. Tus resultados e historial se guardan localmente en este navegador.",
-  notice:"Versión en desarrollo: el banco se ampliará por módulos. Mientras tenga menos de 50 preguntas, el examen utilizará todas las disponibles.",
-  stats:"Rendimiento por categoría",empty:"Todavía no hay exámenes completados.",next:"Siguiente pregunta →",finish:"Finalizar examen",
-  exit:"Salir del examen",correct:"Correctas",wrong:"Incorrectas",score:"Calificación",
-  completed:"EXAMEN COMPLETADO",result:"Tus resultados",review:"Revisar respuestas",again:"Nuevo examen",home:"Inicio",
-  reviewSub:"Revisa tus respuestas y explicaciones.",historySub:"Tus intentos anteriores, guardados en este dispositivo.",
-  back:"Volver al panel",selected:"Tu respuesta",right:"Respuesta correcta",explanation:"Explicación",
-  good:"¡Respuesta correcta!",bad:"No exactamente. Revisa la respuesta correcta.",
-  unanswered:"Sin responder",confirmExit:"¿Salir del examen? Se perderá el intento actual.",
-  passed:"¡Excelente trabajo! Has aprobado este intento de práctica.",failed:"Sigue practicando. Revisa las explicaciones e inténtalo de nuevo.",
-  question:"Pregunta",of:"de",level:"Nivel",date:"Fecha",noHistory:"Todavía no hay intentos registrados.",
-  scoreByCategory:"Rendimiento por categoría",footer:"Entorno independiente de aprendizaje DNS",
-  startError:"El banco de preguntas está vacío."
- }
-};
-
-const $ = id => document.getElementById(id);
-let lang = "en";
-let exam = [];
-let current = 0;
-let answers = [];
-let completedResult = null;
-let history = loadHistory();
-
-function loadHistory(){
- try { return JSON.parse(localStorage.getItem("dnsLabHistory") || "[]"); }
- catch { return []; }
-}
-function saveHistory(){
- try { localStorage.setItem("dnsLabHistory",JSON.stringify(history)); }
- catch(e){ console.warn("Could not save history",e); }
-}
-function showView(id){
- document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
- $(id).classList.add("active");
- window.scrollTo({top:0,behavior:"smooth"});
-}
-function t(key){return TEXT[lang][key] ?? key;}
-function localized(q){return q[lang];}
-function shuffle(array){
- const a=[...array];
- for(let i=a.length-1;i>0;i--){
-  const j=Math.floor(Math.random()*(i+1));
-  [a[i],a[j]]=[a[j],a[i]];
- }
- return a;
-}
-function updateStaticText(){
- document.documentElement.lang=lang;
- $("eyebrow").textContent=t("eyebrow");
- $("heroSubtitle").textContent=t("subtitle");
- $("startBtn").textContent=t("start");
- $("historyBtn").textContent=t("history");
- $("bankCount").textContent=QUESTIONS.length;
- $("bankLabel").textContent=t("bank");
- $("examLabel").textContent=t("target");
- $("attemptLabel").textContent=t("attempts");
- $("attemptCount").textContent=history.length;
- $("aboutTitle").textContent=t("about");
- $("aboutText").textContent=t("aboutText");
- $("bankNotice").textContent=t("notice");
- $("statsTitle").textContent=t("stats");
- $("resultEyebrow").textContent=t("completed");
- $("resultTitle").textContent=t("result");
- $("correctLabel").textContent=t("correct");
- $("wrongLabel").textContent=t("wrong");
- $("percentageLabel").textContent=t("score");
- $("reviewBtn").textContent=t("review");
- $("againBtn").textContent=t("again");
- $("homeBtn").textContent=t("home");
- $("reviewTitle").textContent=t("review");
- $("reviewSubtitle").textContent=t("reviewSub");
- $("reviewHomeBtn").textContent=t("back");
- $("reviewAgainBtn").textContent=t("again");
- $("historyTitle").textContent=t("history");
- $("historySubtitle").textContent=t("historySub");
- $("historyHomeBtn").textContent=t("back");
- $("footerText").textContent=t("footer");
- renderCategoryStats();
-}
-function startExam(){
- if(!QUESTIONS.length){alert(t("startError"));return;}
- exam=shuffle(QUESTIONS).slice(0,50);
- current=0;
- answers=Array(exam.length).fill(null);
- completedResult=null;
- renderQuestion();
- showView("quiz");
-}
-function renderQuestion(){
- const q=exam[current], data=localized(q);
- $("categoryPill").textContent=q.cat+" · "+q.level;
- $("progressText").textContent=`${t("question")} ${current+1} ${t("of")} ${exam.length}`;
- $("questionNumber").textContent=`QUESTION ${String(current+1).padStart(2,"0")}`;
- $("progressFill").style.width=((current+1)/exam.length*100)+"%";
- $("questionText").textContent=data.q;
- $("options").innerHTML="";
- data.o.forEach((option,i)=>{
-  const btn=document.createElement("button");
-  btn.className="option";
-  btn.type="button";
-  btn.innerHTML=`<span class="letter">${"ABCD"[i]}</span><span></span>`;
-  btn.querySelector("span:last-child").textContent=option;
-  btn.disabled=answers[current]!==null;
-  if(answers[current]!==null){
-   if(i===q.answer)btn.classList.add("correct");
-   else if(i===answers[current])btn.classList.add("wrong");
+  header { padding: 14px 4%; }
+  main { margin-top: 25px; }
+  .grid, .result-grid { grid-template-columns: 1fr; }
+  .quiz-top {
+    align-items: flex-start;
+    flex-direction: column;
   }
-  btn.addEventListener("click",()=>chooseAnswer(i));
-  $("options").appendChild(btn);
- });
- renderFeedback();
- $("nextBtn").disabled=answers[current]===null;
- $("nextBtn").textContent=current===exam.length-1?t("finish"):t("next");
-}
-function chooseAnswer(index){
- if(answers[current]!==null)return;
- answers[current]=index;
- renderQuestion();
-}
-function renderFeedback(){
- const box=$("feedback");
- box.className="feedback";
- box.innerHTML="";
- if(answers[current]===null)return;
- const q=exam[current],data=localized(q),correct=answers[current]===q.answer;
- box.classList.add("show",correct?"good":"bad");
- const heading=document.createElement("strong");
- heading.textContent=correct?t("good"):t("bad");
- const explanation=document.createElement("div");
- explanation.textContent=data.e;
- box.append(heading,explanation);
-}
-function nextQuestion(){
- if(answers[current]===null)return;
- if(current<exam.length-1){current++;renderQuestion();}
- else finishExam();
-}
-function finishExam(){
- const correct=exam.reduce((n,q,i)=>n+(answers[i]===q.answer?1:0),0);
- const total=exam.length;
- const percentage=Math.round(correct/total*100);
- const category={};
- exam.forEach((q,i)=>{
-  if(!category[q.cat])category[q.cat]={correct:0,total:0};
-  category[q.cat].total++;
-  if(answers[i]===q.answer)category[q.cat].correct++;
- });
- completedResult={id:Date.now(),date:new Date().toISOString(),total,correct,wrong:total-correct,percentage,category,
-  items:exam.map((q,i)=>({id:q.id,answer:answers[i],correct:q.answer}))};
- history.unshift(completedResult);
- history=history.slice(0,100);
- saveHistory();
- showResults();
- showView("result");
-}
-function showResults(){
- $("score").textContent=completedResult.percentage;
- $("correctCount").textContent=completedResult.correct;
- $("wrongCount").textContent=completedResult.wrong;
- $("percentage").textContent=completedResult.percentage+"%";
- $("resultMessage").textContent=completedResult.percentage>=70?t("passed"):t("failed");
- updateStaticText();
-}
-function showReview(){
- const list=$("reviewList");
- list.innerHTML="";
- exam.forEach((q,i)=>{
-  const data=localized(q);
-  const item=document.createElement("article");
-  item.className="card review-item";
-  const title=document.createElement("h3");
-  title.textContent=`${i+1}. ${data.q}`;
-  item.appendChild(title);
-  const meta=document.createElement("p");
-  meta.textContent=`${q.cat} · ${q.level}`;
-  item.appendChild(meta);
-  const chosen=answers[i]===null?t("unanswered"):data.o[answers[i]];
-  const right=data.o[q.answer];
-  const user=document.createElement("div");
-  user.className="review-answer "+(answers[i]===q.answer?"good":"bad");
-  user.textContent=`${t("selected")}: ${chosen}`;
-  const correct=document.createElement("div");
-  correct.className="review-answer good";
-  correct.textContent=`${t("right")}: ${right}`;
-  const explanation=document.createElement("p");
-  explanation.textContent=`${t("explanation")}: ${data.e}`;
-  item.append(user,correct,explanation);
-  list.appendChild(item);
- });
- showView("review");
-}
-function renderHistory(){
- const box=$("historyList");
- box.innerHTML="";
- if(!history.length){
-  const empty=document.createElement("div");
-  empty.className="empty";empty.textContent=t("noHistory");box.appendChild(empty);return;
- }
- history.forEach((h)=>{
-  const row=document.createElement("div");
-  row.className="history-row";
-  const date=document.createElement("span");
-  date.textContent=new Date(h.date).toLocaleString(lang==="es"?"es-CR":"en-US");
-  const score=document.createElement("strong");
-  score.textContent=`${h.percentage}%`;
-  const detail=document.createElement("span");
-  detail.className="muted";
-  detail.textContent=`${h.correct}/${h.total}`;
-  row.append(date,detail,score);box.appendChild(row);
- });
-}
-function renderCategoryStats(){
- const box=$("categoryStats");
- if(!history.length){box.innerHTML=`<div class="empty">${t("empty")}</div>`;return;}
- const totals={};
- history.forEach(attempt=>{
-  Object.entries(attempt.category||{}).forEach(([cat,data])=>{
-   if(!totals[cat])totals[cat]={correct:0,total:0};
-   totals[cat].correct+=data.correct;
-   totals[cat].total+=data.total;
-  });
- });
- box.innerHTML="";
- Object.entries(totals).sort((a,b)=>a[0].localeCompare(b[0])).forEach(([cat,data])=>{
-  const pct=Math.round(data.correct/data.total*100);
-  const row=document.createElement("div");
-  row.style.margin="13px 0";
-  const label=document.createElement("div");
-  label.style.display="flex";label.style.justifyContent="space-between";
-  const name=document.createElement("span");name.textContent=cat;
-  const score=document.createElement("strong");score.textContent=pct+"%";
-  label.append(name,score);
-  const track=document.createElement("div");
-  track.className="progress-track";track.style.margin="8px 0 0";
-  const fill=document.createElement("div");fill.className="progress-fill";fill.style.width=pct+"%";
-  track.appendChild(fill);row.append(label,track);box.appendChild(row);
- });
+  .quiz-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .quiz-footer button { width: 100%; }
+  .hero { padding-top: 20px; }
 }
 
-$("language").addEventListener("change",e=>{
- lang=e.target.value;
- updateStaticText();
- if($("quiz").classList.contains("active"))renderQuestion();
- if($("review").classList.contains("active"))showReview();
- if($("history").classList.contains("active"))renderHistory();
-});
-$("startBtn").addEventListener("click",startExam);
-$("againBtn").addEventListener("click",startExam);
-$("reviewAgainBtn").addEventListener("click",startExam);
-$("reviewBtn").addEventListener("click",showReview);
-$("nextBtn").addEventListener("click",nextQuestion);
-$("exitBtn").addEventListener("click",()=>{
- if(confirm(t("confirmExit")))showView("home");
-});
-$("homeBtn").addEventListener("click",()=>showView("home"));
-$("reviewHomeBtn").addEventListener("click",()=>showView("home"));
-$("historyBtn").addEventListener("click",()=>{renderHistory();showView("history");});
-$("historyHomeBtn").addEventListener("click",()=>showView("home"));
-
-updateStaticText();
-</script>
-</body>
-</html>
+@media(prefers-reduced-motion:reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
